@@ -1,0 +1,24 @@
+class game {
+    // attributes and methods
+    field Jet jet; // our flight
+    field Map map; // map(building、enemy)
+    field int level;
+    field int len;
+    var char key;
+    constructor game new(){
+        do game.init(1, 1, 5);
+        return this;
+    }
+    method void init(int level,int num_enemy,int hp){
+        let jet = jet.new(128, 30); // center of the jet
+        let len = 256 / (num_enemy + 1); // the distance between enemy
+        // put enemy
+    }
+    method void run () {
+        
+    }
+    method void over(){
+        // clean all memory and data
+        // draw some pictures
+    }
+}
