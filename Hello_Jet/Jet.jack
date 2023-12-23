@@ -15,8 +15,8 @@ class Jet{
         return this;
     }
     // check whether hit the enemy
-    method bool hit_enemy(int row,int col){
-        
+    method void hit_enemy(int row,int col){
+        return;
     }
     // shoot the bullet
     method void fire_bullet(){

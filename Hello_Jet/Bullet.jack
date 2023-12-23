@@ -1,0 +1,15 @@
+class Bullet {
+    field int x;
+    field int y;
+    field int v;
+    constructor Bullet new(int Ax,int Ay,int Av){
+        let x = Ax;
+        let y = Ay;
+        let v = Av;
+        return this;
+    }
+    method void move(int x,int y,int v){
+        // v represent velocity(v)
+        return;
+    }
+}

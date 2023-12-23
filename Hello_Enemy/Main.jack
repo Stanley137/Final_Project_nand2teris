@@ -1,0 +1,19 @@
+class Main {
+    function void main() {
+        var Enemy enemy0;
+        var Enemy enemy1;
+        var Enemy enemy2;
+        var int i;
+        let enemy0 = Enemy.new(100, 80, 1);
+        let enemy1 = Enemy.new(150, 80, 1);
+        let enemy2 = Enemy.new(200, 80, 1);
+        let i = 0;
+        while(i<8){
+            do enemy0.move();
+            do enemy1.move();
+            do enemy2.move();
+            let i = i+1;
+        }
+        return;
+    }
+}

@@ -24,6 +24,11 @@ call Jet.draw0 2
 pop temp 0
 push pointer 0
 return
+function Jet.hit_enemy 0
+push argument 0
+pop pointer 0
+push constant 0
+return
 function Jet.fire_bullet 0
 push argument 0
 pop pointer 0

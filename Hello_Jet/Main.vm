@@ -1,0 +1,11 @@
+function Main.main 1
+push constant 80
+push constant 80
+push constant 1
+call Enemy.new 3
+pop local 0
+push local 0
+call Enemy.move 1
+pop temp 0
+push constant 0
+return
