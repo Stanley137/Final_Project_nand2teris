@@ -10,14 +10,17 @@ class Jet{
     field int b_index;
     field int trans_row;
     field int trans_col;
+    field int bullet_num;
+    field bool bullet_status;
     field Array bullets;
     field Bullet bullet;
-    let bullets = Array.new(3);
 
     constructor Jet new(int A_row,int A_col, int A_hp){
-        let hp = A_hp;
         let row = A_row;
         let col = A_col;
+        let hp = A_hp;
+        let bullets = Array.new(3);
+        let bullet_num = 2;
         do draw0(((trans_row_2jet(row))*32)+((trans_col_2jet(col))/16)); // 32 * 30 + 15/16
         let i = 0;
         while(i<3){
@@ -31,36 +34,34 @@ class Jet{
         return;
     }
     // shoot the bullet
-    method void fire_bullet(){
+    method void fire(){ // center of jet =  (13, 8) (col, row)
         // check every bullets
         // if launch, then move
         // else create
         // if bullet touch the boundry or hit the enemy, 
-        method void fire(int row, int col){ // center of jet =  (13, 8) (col, row)
-            var bool is_shot;
-            let is_shot = false;
-            let b_index = 0;
-            while(b_index < 5){ // find a non-existing bullet
-                let bullet = bullets[b_index];
-                let bullet_status = bullet.get_status();
-                if(~bullet_status && ~is_shot){ // not shot yet
-                    do bullet.set_row(this.row);
-                    do bullet.set_col(this.col + 8 + 11);
-                    //do bullet.move_left();
-                    let is_shot = true;
-                }
-                else{
-                    if(bullet_status){
-                        do bullet.move_left();
-                    }
-                }
-                let b_index = b_index + 1;
+        var bool is_shot;
+        var int hit;
+        let is_shot = false;
+        let b_index = 0;
+        while(b_index < bullet_num){ // find a non-existing bullet
+            let bullet = bullets[b_index];
+            let bullet_status = bullet.get_status();
+            if((~bullet_status) & (~is_shot)){ // not shot yet
+                do bullet.set_row(row - 3);
+                do bullet.set_col(col + 8 + 11 + 5);
+                //do bullet.move_left();
+                let is_shot = true;
+                let hit = bullet.move_right();
+                do bullet.set_status(true);
             }
-            // check whether the bullet exist
-            // if(exist) move
-            // else create
-            return;
+            else{
+                if(bullet_status){
+                    let hit = bullet.move_right();
+                }
+            }
+            let b_index = b_index + 1;
         }
+        return;
     }
     // the location start from left up, so x - 13, y - 8, move to left up
     method int trans_row_2jet(int row){

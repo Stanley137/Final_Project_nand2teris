@@ -385,9 +385,9 @@ class Enemy {
     }
     method void fire(int row, int col){
         let b_index = b_index % 5;
-        // check whether the bullet exist
-        // if(exist) move
-        // else create and move
+            // check whether the bullet exist
+            // if(exist) move
+            // else create and move
         let b_index = b_index + 1;
     }
     method int move(){

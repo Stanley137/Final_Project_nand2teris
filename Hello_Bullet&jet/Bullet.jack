@@ -14,12 +14,6 @@ class Bullet {
         let col = c;
         let v = vel;
         let status = false;
-        if(v > 0){
-            do draw0(((trans_row_2bullet(row))*32)+((trans_col_2bullet(col))/16)); // 32 * 30 + 15/16
-        }
-        else{
-            do draw_enemy0(((trans_row_2enemy_bullet(row))*32)+((trans_col_2enemy_bullet(col))/16)); // 32 * 30 + 15/16
-        }
         return this;
     }
     
@@ -405,9 +399,9 @@ class Bullet {
         else{
             do draw_enemy_clear(location);
         }
-        let this.row = -1;
-        let this.col = -1;
-        let this.status = false;
+        let row = -1;
+        let col = -1;
+        let status = false;
         return;
     }
 
@@ -853,7 +847,7 @@ class Bullet {
         do draw_enemy16(location);
         do Sys.wait(waitTime);
 
-        let col = col + 16;
+        let col = col - 16;
         return 1;
     }
 
