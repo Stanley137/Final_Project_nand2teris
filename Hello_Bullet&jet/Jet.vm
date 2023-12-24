@@ -1,5 +1,5 @@
 function Jet.new 0
-push constant 13
+push constant 14
 call Memory.alloc 1
 pop pointer 0
 push argument 0
@@ -8,9 +8,12 @@ push argument 1
 pop this 2
 push argument 2
 pop this 0
+push constant 0
+not
+pop this 10
 push constant 3
 call Array.new 1
-pop this 11
+pop this 12
 push constant 2
 pop this 9
 push pointer 0
@@ -36,7 +39,7 @@ lt
 not
 if-goto WHILE_END0
 push this 5
-push this 11
+push this 12
 add
 push constant 1
 neg
@@ -61,43 +64,30 @@ push argument 0
 pop pointer 0
 push constant 0
 return
-function Jet.fire 2
+function Jet.fire 1
 push argument 0
 pop pointer 0
 push constant 0
-pop local 0
-push constant 0
 pop this 6
-label WHILE_EXP0
-push this 6
-push this 9
-lt
-not
-if-goto WHILE_END0
-push this 6
-push this 11
-add
-pop pointer 1
-push that 0
-pop this 12
-push this 12
-call Bullet.get_status 1
-pop this 10
 push this 10
-not
-push local 0
-not
-and
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
+push constant 0
+pop this 10
+push this 6
 push this 12
+add
+pop pointer 1
+push that 0
+pop this 13
+push this 13
 push this 1
 push constant 3
 sub
 call Bullet.set_row 2
 pop temp 0
-push this 12
+push this 13
 push this 2
 push constant 8
 add
@@ -107,34 +97,15 @@ push constant 5
 add
 call Bullet.set_col 2
 pop temp 0
-push constant 0
-not
-pop local 0
-push this 12
+push this 13
 call Bullet.move_right 1
-pop local 1
-push this 12
-push constant 0
-not
-call Bullet.set_status 2
-pop temp 0
+pop local 0
 goto IF_END0
 label IF_FALSE0
-push this 10
-if-goto IF_TRUE1
-goto IF_FALSE1
-label IF_TRUE1
-push this 12
+push this 13
 call Bullet.move_right 1
-pop local 1
-label IF_FALSE1
+pop local 0
 label IF_END0
-push this 6
-push constant 1
-add
-pop this 6
-goto WHILE_EXP0
-label WHILE_END0
 push constant 0
 return
 function Jet.trans_row_2jet 0
