@@ -1,16 +1,17 @@
 class Jet{
     //  private variable
-    field int lives;
+    field int hp;
     field int row; // 0<=row<=255
     field int col; // 0<=col<=511
     field int location;
     field int frame;
     field int trans_row;
     field int trans_col;
-    constructor Jet new(int Ax,int Ay){
-        let lives = 10;
-        let row = Ax;
-        let col = Ay;
+
+    constructor Jet new(int A_row,int A_col, int A_hp){
+        let hp = A_hp;
+        let row = A_row;
+        let col = A_col;
         do draw0(((trans_row_2jet(row))*32)+((trans_col_2jet(col))/16)); // 32 * 30 + 15/16
         return this;
     }

@@ -2,20 +2,35 @@ class game {
     // attributes and methods
     field Jet jet; // our flight
     field Map map; // map(building、enemy)
-    field int level;
+    field int i;
+    field int step;
     field int len;
+    field Array enemys;
     var char key;
+    
     constructor game new(){
         do game.init(1, 1, 5);
         return this;
     }
-    method void init(int level,int num_enemy,int hp){
-        let jet = jet.new(128, 30); // center of the jet
+    method void init(int level,int jet_hp,int num_enemy,int enemy_hp){ 
+        let jet = jet.new(128, 30, jet_hp); // center of the jet
         let len = 256 / (num_enemy + 1); // the distance between enemy
+        // init the map????
+        map.init(level);
         // put enemy
+        let enemys = Array.new(num_enemy);
+        let i = 0;
+        let step = 0;
+        while(i<num_enemy){
+            let step = step + len;
+            let enemys[i] = Enemy.new(step, 480, hp);
+            let i = i+1;
+        }
+        return;
     }
     method void run () {
-        
+        // enemy's level to hp = level * (hp-1)
+
     }
     method void over(){
         // clean all memory and data

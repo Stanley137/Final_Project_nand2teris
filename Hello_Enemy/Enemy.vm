@@ -10,7 +10,7 @@ push argument 2
 pop this 4
 push pointer 0
 return
-function Enemy.trans_col 0
+function Enemy.trans_col_f 0
 push argument 0
 pop pointer 0
 push argument 1
@@ -1823,7 +1823,7 @@ call Enemy.cal_location 3
 pop this 5
 push pointer 0
 push this 1
-call Enemy.trans_col 2
+call Enemy.trans_col_f 2
 push constant 16
 sub
 push constant 0
