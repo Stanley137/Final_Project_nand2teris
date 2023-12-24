@@ -22,6 +22,28 @@ class Bullet {
         }
         return this;
     }
+    
+    method int get_row(){
+        return row;
+    }
+    method int get_col(){
+        return col;
+    }
+    method bool get_status(){
+        return status;
+    }
+    method void set_row(int r){
+        let row = r;
+        return;
+    }
+    method void set_col(int c){
+        let col = c;
+        return;
+    }
+    method void set_status(bool sta){
+        let status = sta;
+        return;
+    }
 
     method int trans_row_2bullet(int row){
         return (row-3);
