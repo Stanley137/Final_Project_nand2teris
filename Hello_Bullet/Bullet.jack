@@ -24,24 +24,24 @@ class Bullet {
     }
     
     method int get_row(){
-        return this.row;
+        return row;
     }
     method int get_col(){
-        return this.col;
+        return col;
     }
     method bool get_status(){
-        return this.status;
+        return status;
     }
     method void set_row(int r){
-        let this.row = r;
+        let row = r;
         return;
     }
     method void set_col(int c){
-        let this.col = c;
+        let col = c;
         return;
     }
     method void set_status(bool sta){
-        let this.status = sta;
+        let status = sta;
         return;
     }
 
