@@ -12,7 +12,6 @@ class Enemy {
 
     field int hp;
     field int i;
-    field int b_index;
 
     field int num_bullets;
     field Array bullets;
@@ -20,17 +19,24 @@ class Enemy {
     field int bullet_row;
     field int bullet_col;
     field bool bullet_status;
+    field bool first_shot;
+    field int bullet_frame;
+    field int prev_bullet_frame;
+    field int prev_idx;
 
-    let bullets = Array.new(5);
-    let b_index = 0;
+    
     constructor Enemy new(int E_row, int E_col, int E_hp){
         // init position
         let row = E_row;
         let col = E_col;
         let hp = E_hp;
         // init bullet
+        let num_bullets = 1;
+        let bullets = Array.new(num_bullets);
+        let first_shot = true;
+        let prev_idx = 0;
         let i = 0;
-        while(i<5){
+        while(i < num_bullets){
             let bullets[i] = Bullet.new(-1, -1, -1);
             let i = i + 1;
         }
@@ -48,25 +54,76 @@ class Enemy {
         let trans_col = col - 8;
         return (trans_row * 32) + (trans_col / 16);
     } 
-    method void fire(int row, int col){ // center of enemy =  (8, 9) (col, row)
-        var bool is_shot;
-        let is_shot = false;
+    method void fire(){ // center of enemy =  (8, 9) (col, row)
+        //var bool is_shot;
+        var int b_index;
+        var int output;
+        //let is_shot = false;
         let b_index = 0;
-        while(b_index < 5){ // find a non-existing bullet
+        while(b_index < num_bullets){ // find a non-existing bullet
             let bullet = bullets[b_index];
             let bullet_status = bullet.get_status();
-            if(~bullet_status && ~is_shot){ // not shot yet
-                do bullet.set_row(this.row);
-                do bullet.set_col(this.col - 8 - 11);
-                //do bullet.move_left();
-                let is_shot = true;
+            if(~bullet_status){ // out of bound of havent't been shot yet
+                if(first_shot){ // it's the first shot
+                    do bullet.set_row(row - 1);
+                    do bullet.set_col(col - 8 - 11);
+                    do bullet.set_status(true);
+
+                    do bullet.move_left();
+                    do bullet.move_left();
+                    do bullet.move_left();
+                    do bullet.move_left();
+                    let first_shot = false;
+                    let prev_bullet_frame = 68;
+                    let prev_idx = b_index;
+                    //do Output.printInt(prev_idx);
+                    do Output.printInt(prev_bullet_frame);
+                }
+                else{
+                    if(prev_bullet_frame = 34){
+                        do bullet.set_row(row - 1);
+                        do bullet.set_col(col - 8 - 11);
+                        do bullet.set_status(true);
+                        
+                        do bullet.move_left_per_pixel();
+                        let prev_bullet_frame = 1;
+                        let prev_idx = b_index;
+                        do Output.printInt(prev_idx);
+                        do Output.printInt(prev_bullet_frame);
+                    }
+                }
             }
             else{
-                if(bullet_status){
-                    do bullet.move_left();
+                do bullet.move_left_per_pixel();
+                
+                if(b_index = prev_idx){
+                    let bullet_frame = bullet.get_frame();
+                    let prev_bullet_frame = bullet_frame;
+                    //do Output.printInt(prev_idx);
+                    //do Output.printInt(prev_bullet_frame);
+                    // do Output.printString("re");
                 }
             }
             let b_index = b_index + 1;
+
+
+            // if(~bullet_status & ~is_shot & bullet_frame){ // not shot yet
+            //     do bullet.set_row(row - 1);
+            //     do bullet.set_col(col - 8 - 11);
+            //     do bullet.set_status(true);
+
+            //     while(bullet_frame < 17){
+            //         do bullet.move_left_per_pixel();
+            //         let bullet_frame = bullet_frame + 1;
+            //     }
+            //     let is_shot = true;
+            // }
+            // else{
+            //     if(bullet_status){
+            //         do bullet.move_left_per_pixel();
+            //     }
+            // }
+            // let b_index = b_index + 1;
         }
         // check whether the bullet exist
         // if(exist) move
