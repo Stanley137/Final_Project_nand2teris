@@ -1,0 +1,3324 @@
+function Bullet.new 0
+push constant 6
+call Memory.alloc 1
+pop pointer 0
+push argument 0
+pop this 0
+push argument 1
+pop this 1
+push argument 2
+pop this 2
+push this 2
+push constant 0
+gt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+push pointer 0
+push this 0
+call Bullet.trans_row_2bullet 2
+push constant 32
+call Math.multiply 2
+push pointer 0
+push this 1
+call Bullet.trans_col_2bullet 2
+push constant 16
+call Math.divide 2
+add
+call Bullet.draw0 2
+pop temp 0
+goto IF_END0
+label IF_FALSE0
+push pointer 0
+push pointer 0
+push this 0
+call Bullet.trans_row_2enemy_bullet 2
+push constant 32
+call Math.multiply 2
+push pointer 0
+push this 1
+call Bullet.trans_col_2enemy_bullet 2
+push constant 16
+call Math.divide 2
+add
+call Bullet.draw_enemy0 2
+pop temp 0
+label IF_END0
+push pointer 0
+return
+function Bullet.move 0
+push argument 0
+pop pointer 0
+push argument 3
+push constant 1
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+label IF_FALSE0
+push constant 0
+return
+function Bullet.trans_row_2bullet 0
+push argument 0
+pop pointer 0
+push argument 1
+push constant 3
+sub
+return
+function Bullet.trans_col_2bullet 0
+push argument 0
+pop pointer 0
+push argument 1
+push constant 11
+sub
+return
+function Bullet.trans_row_2enemy_bullet 0
+push argument 0
+pop pointer 0
+push argument 1
+push constant 3
+sub
+return
+function Bullet.trans_col_2enemy_bullet 0
+push argument 0
+pop pointer 0
+push argument 1
+push constant 0
+sub
+return
+function Bullet.cal_location 0
+push argument 0
+pop pointer 0
+push this 2
+push constant 0
+gt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push argument 1
+push constant 3
+sub
+pop this 4
+push argument 2
+push constant 11
+sub
+pop this 5
+goto IF_END0
+label IF_FALSE0
+push argument 1
+push constant 3
+sub
+pop this 4
+push argument 2
+push constant 0
+sub
+pop this 5
+label IF_END0
+push this 4
+push constant 32
+call Math.multiply 2
+push this 5
+push constant 16
+call Math.divide 2
+add
+return
+function Bullet.draw0 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 1
+add
+pop local 0
+push local 0
+push constant 15
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 127
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 2046
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 2046
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 2046
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 2046
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 127
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 15
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Bullet.draw1 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 1
+add
+pop local 0
+push local 0
+push constant 30
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 254
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 4092
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 4092
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 4092
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 4092
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 254
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 30
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Bullet.draw2 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 1
+add
+pop local 0
+push local 0
+push constant 60
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 508
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 8184
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 8184
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 8184
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 8184
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 508
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 60
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Bullet.draw3 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 1
+add
+pop local 0
+push local 0
+push constant 120
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 1016
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 16368
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 16368
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 16368
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 16368
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 1016
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 120
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Bullet.draw4 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 1
+add
+pop local 0
+push local 0
+push constant 240
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 2032
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 32736
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 32736
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 32736
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 32736
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 2032
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 240
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Bullet.draw5 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 1
+add
+pop local 0
+push local 0
+push constant 480
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 4064
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 64
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 64
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 64
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 64
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 4064
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 480
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Bullet.draw6 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 1
+add
+pop local 0
+push local 0
+push constant 960
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 8128
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 128
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 128
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 128
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 128
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 8128
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 960
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 65
+add
+push constant 1
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 97
+add
+push constant 1
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 129
+add
+push constant 1
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 161
+add
+push constant 1
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Bullet.draw7 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 1
+add
+pop local 0
+push local 0
+push constant 1920
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 16256
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 256
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 256
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 256
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 256
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 16256
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 1920
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 65
+add
+push constant 3
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 97
+add
+push constant 3
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 129
+add
+push constant 3
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 161
+add
+push constant 3
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Bullet.draw8 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 1
+add
+pop local 0
+push local 0
+push constant 3840
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 32512
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 512
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 512
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 512
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 512
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 32512
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 3840
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 65
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 97
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 129
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 161
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Bullet.draw9 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 1
+add
+pop local 0
+push local 0
+push constant 7680
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 512
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 1024
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 1024
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 1024
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 1024
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 512
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 7680
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 65
+add
+push constant 15
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 97
+add
+push constant 15
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 129
+add
+push constant 15
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 161
+add
+push constant 15
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Bullet.draw10 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 1
+add
+pop local 0
+push local 0
+push constant 15360
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 1024
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 2048
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 2048
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 2048
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 2048
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 1024
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 15360
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 33
+add
+push constant 1
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 65
+add
+push constant 31
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 97
+add
+push constant 31
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 129
+add
+push constant 31
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 161
+add
+push constant 31
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 193
+add
+push constant 1
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Bullet.draw11 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 1
+add
+pop local 0
+push local 0
+push constant 30720
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 2048
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 4096
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 4096
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 4096
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 4096
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 2048
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 30720
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 33
+add
+push constant 3
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 65
+add
+push constant 63
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 97
+add
+push constant 63
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 129
+add
+push constant 63
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 161
+add
+push constant 63
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 193
+add
+push constant 3
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Bullet.draw12 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 1
+add
+pop local 0
+push local 0
+push constant 4096
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 4096
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 4096
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 4096
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 33
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 65
+add
+push constant 127
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 97
+add
+push constant 127
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 129
+add
+push constant 127
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 161
+add
+push constant 127
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 193
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Bullet.draw13 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 1
+add
+pop local 0
+push local 0
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 16384
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 16384
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 16384
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 16384
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 1
+add
+push constant 1
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 33
+add
+push constant 15
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 65
+add
+push constant 255
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 97
+add
+push constant 255
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 129
+add
+push constant 255
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 161
+add
+push constant 255
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 193
+add
+push constant 15
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 225
+add
+push constant 1
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Bullet.draw14 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 1
+add
+pop local 0
+push local 0
+push constant 16384
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 16384
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 32767
+not
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 32767
+not
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 32767
+not
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 32767
+not
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 16384
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 16384
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 1
+add
+push constant 3
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 33
+add
+push constant 31
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 65
+add
+push constant 511
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 97
+add
+push constant 511
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 129
+add
+push constant 511
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 161
+add
+push constant 511
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 193
+add
+push constant 31
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 225
+add
+push constant 3
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Bullet.draw15 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 1
+add
+pop local 0
+push local 0
+push constant 32767
+not
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 32767
+not
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 32767
+not
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 32767
+not
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 1
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 33
+add
+push constant 63
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 65
+add
+push constant 1023
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 97
+add
+push constant 1023
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 129
+add
+push constant 1023
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 161
+add
+push constant 1023
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 193
+add
+push constant 63
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 225
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Bullet.draw16 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 1
+add
+pop local 0
+push local 0
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 1
+add
+push constant 15
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 33
+add
+push constant 127
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 65
+add
+push constant 2046
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 97
+add
+push constant 2046
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 129
+add
+push constant 2046
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 161
+add
+push constant 2046
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 193
+add
+push constant 127
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 225
+add
+push constant 15
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Bullet.draw_clear 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 1
+add
+pop local 0
+push local 0
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Bullet.clear 0
+push argument 0
+pop pointer 0
+push this 2
+push constant 0
+gt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+push argument 1
+call Bullet.draw_clear 2
+pop temp 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return
+goto IF_END0
+label IF_FALSE0
+push pointer 0
+push argument 1
+call Bullet.draw_enemy_clear 2
+pop temp 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return
+label IF_END0
+function Bullet.move_right 1
+push argument 0
+pop pointer 0
+push constant 22
+pop local 0
+push pointer 0
+push this 0
+call Bullet.trans_row_2bullet 2
+pop this 4
+push pointer 0
+push this 1
+call Bullet.trans_col_2bullet 2
+pop this 5
+push pointer 0
+push this 0
+push this 1
+call Bullet.cal_location 3
+pop this 3
+push this 5
+push constant 16
+add
+push constant 511
+gt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+push this 3
+call Bullet.clear 2
+pop temp 0
+push constant 1
+neg
+return
+label IF_FALSE0
+push pointer 0
+push this 3
+call Bullet.draw0 2
+pop temp 0
+push local 0
+call Sys.wait 1
+pop temp 0
+push pointer 0
+push this 3
+call Bullet.draw1 2
+pop temp 0
+push local 0
+call Sys.wait 1
+pop temp 0
+push pointer 0
+push this 3
+call Bullet.draw2 2
+pop temp 0
+push local 0
+call Sys.wait 1
+pop temp 0
+push pointer 0
+push this 3
+call Bullet.draw3 2
+pop temp 0
+push local 0
+call Sys.wait 1
+pop temp 0
+push pointer 0
+push this 3
+call Bullet.draw4 2
+pop temp 0
+push local 0
+call Sys.wait 1
+pop temp 0
+push pointer 0
+push this 3
+call Bullet.draw5 2
+pop temp 0
+push local 0
+call Sys.wait 1
+pop temp 0
+push pointer 0
+push this 3
+call Bullet.draw6 2
+pop temp 0
+push local 0
+call Sys.wait 1
+pop temp 0
+push pointer 0
+push this 3
+call Bullet.draw7 2
+pop temp 0
+push local 0
+call Sys.wait 1
+pop temp 0
+push pointer 0
+push this 3
+call Bullet.draw8 2
+pop temp 0
+push local 0
+call Sys.wait 1
+pop temp 0
+push pointer 0
+push this 3
+call Bullet.draw9 2
+pop temp 0
+push local 0
+call Sys.wait 1
+pop temp 0
+push pointer 0
+push this 3
+call Bullet.draw9 2
+pop temp 0
+push local 0
+call Sys.wait 1
+pop temp 0
+push pointer 0
+push this 3
+call Bullet.draw10 2
+pop temp 0
+push local 0
+call Sys.wait 1
+pop temp 0
+push pointer 0
+push this 3
+call Bullet.draw11 2
+pop temp 0
+push local 0
+call Sys.wait 1
+pop temp 0
+push pointer 0
+push this 3
+call Bullet.draw12 2
+pop temp 0
+push local 0
+call Sys.wait 1
+pop temp 0
+push pointer 0
+push this 3
+call Bullet.draw13 2
+pop temp 0
+push local 0
+call Sys.wait 1
+pop temp 0
+push pointer 0
+push this 3
+call Bullet.draw14 2
+pop temp 0
+push local 0
+call Sys.wait 1
+pop temp 0
+push pointer 0
+push this 3
+call Bullet.draw15 2
+pop temp 0
+push local 0
+call Sys.wait 1
+pop temp 0
+push pointer 0
+push this 3
+call Bullet.draw16 2
+pop temp 0
+push local 0
+call Sys.wait 1
+pop temp 0
+push this 1
+push constant 16
+add
+pop this 1
+push constant 1
+return
+function Bullet.draw_enemy0 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 1
+add
+pop local 0
+push local 0
+push constant 1920
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 1008
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 1023
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 1023
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 1023
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 1023
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 1008
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 1920
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Bullet.draw_enemy1 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 1
+add
+pop local 0
+push local 0
+push constant 960
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 504
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 511
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 511
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 511
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 511
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 504
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 960
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 63
+add
+push constant 32767
+not
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 95
+add
+push constant 32767
+not
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 127
+add
+push constant 32767
+not
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 159
+add
+push constant 32767
+not
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Bullet.draw_enemy2 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 1
+add
+pop local 0
+push local 0
+push constant 480
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 252
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 255
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 255
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 255
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 255
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 252
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 480
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 63
+add
+push constant 16384
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 95
+add
+push constant 16384
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 127
+add
+push constant 16384
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 159
+add
+push constant 16384
+neg
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Bullet.draw_enemy3 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 1
+add
+pop local 0
+push local 0
+push constant 240
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 126
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 127
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 127
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 127
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 127
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 126
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 240
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 63
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 95
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 127
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 159
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Bullet.draw_enemy4 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 1
+add
+pop local 0
+push local 0
+push constant 120
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 63
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 63
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 63
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 63
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 63
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 63
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 120
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 63
+add
+push constant 4096
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 95
+add
+push constant 4096
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 127
+add
+push constant 4096
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 159
+add
+push constant 4096
+neg
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Bullet.draw_enemy5 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 1
+add
+pop local 0
+push local 0
+push constant 60
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 31
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 31
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 31
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 31
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 31
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 31
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 60
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 31
+add
+push constant 32767
+not
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 63
+add
+push constant 2048
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 95
+add
+push constant 2048
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 127
+add
+push constant 2048
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 159
+add
+push constant 2048
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 191
+add
+push constant 32767
+not
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Bullet.draw_enemy6 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 1
+add
+pop local 0
+push local 0
+push constant 30
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 15
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 15
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 15
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 15
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 15
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 15
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 30
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 31
+add
+push constant 16384
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 63
+add
+push constant 1024
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 95
+add
+push constant 1024
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 127
+add
+push constant 1024
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 159
+add
+push constant 1024
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 191
+add
+push constant 16384
+neg
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Bullet.draw_enemy7 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 1
+add
+pop local 0
+push local 0
+push constant 15
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 15
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 31
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 63
+add
+push constant 512
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 95
+add
+push constant 512
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 127
+add
+push constant 512
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 159
+add
+push constant 512
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 191
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Bullet.draw_enemy8 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 1
+add
+pop local 0
+push local 0
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 3
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 3
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 3
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 3
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 3
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 3
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 1
+sub
+push constant 32767
+not
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 31
+add
+push constant 4096
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 63
+add
+push constant 256
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 95
+add
+push constant 256
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 127
+add
+push constant 256
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 159
+add
+push constant 256
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 191
+add
+push constant 4096
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 223
+add
+push constant 32767
+not
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Bullet.draw_enemy9 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 1
+add
+pop local 0
+push local 0
+push constant 3
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 1
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 1
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 1
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 1
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 1
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 1
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 3
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 1
+sub
+push constant 16384
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 31
+add
+push constant 2048
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 63
+add
+push constant 128
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 95
+add
+push constant 128
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 127
+add
+push constant 128
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 159
+add
+push constant 128
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 191
+add
+push constant 2048
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 223
+add
+push constant 16384
+neg
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Bullet.draw_enemy10 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 1
+add
+pop local 0
+push local 0
+push constant 1
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 1
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 1
+sub
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 31
+add
+push constant 1024
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 63
+add
+push constant 64
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 95
+add
+push constant 64
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 127
+add
+push constant 64
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 159
+add
+push constant 64
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 191
+add
+push constant 1024
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 223
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Bullet.draw_enemy11 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 1
+add
+pop local 0
+push local 0
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 1
+sub
+push constant 4096
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 31
+add
+push constant 32256
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 63
+add
+push constant 32736
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 95
+add
+push constant 32736
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 127
+add
+push constant 32736
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 159
+add
+push constant 32736
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 191
+add
+push constant 32256
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 223
+add
+push constant 4096
+neg
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Bullet.draw_enemy12 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 1
+add
+pop local 0
+push local 0
+push constant 1
+sub
+push constant 30720
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 31
+add
+push constant 16128
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 63
+add
+push constant 16368
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 95
+add
+push constant 16368
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 127
+add
+push constant 16368
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 159
+add
+push constant 16368
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 191
+add
+push constant 16128
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 223
+add
+push constant 30720
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Bullet.draw_enemy13 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 1
+add
+pop local 0
+push local 0
+push constant 1
+sub
+push constant 15360
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 31
+add
+push constant 8064
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 63
+add
+push constant 8184
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 95
+add
+push constant 8184
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 127
+add
+push constant 8184
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 159
+add
+push constant 8184
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 191
+add
+push constant 8064
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 223
+add
+push constant 15360
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Bullet.draw_enemy14 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 1
+add
+pop local 0
+push local 0
+push constant 1
+sub
+push constant 7680
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 31
+add
+push constant 4032
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 63
+add
+push constant 4092
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 95
+add
+push constant 4092
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 127
+add
+push constant 4092
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 159
+add
+push constant 4092
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 191
+add
+push constant 4032
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 223
+add
+push constant 7680
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Bullet.draw_enemy15 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 1
+add
+pop local 0
+push local 0
+push constant 1
+sub
+push constant 3840
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 31
+add
+push constant 2016
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 63
+add
+push constant 2046
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 95
+add
+push constant 2046
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 127
+add
+push constant 2046
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 159
+add
+push constant 2046
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 191
+add
+push constant 2016
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 223
+add
+push constant 3840
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Bullet.draw_enemy16 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 1
+add
+pop local 0
+push local 0
+push constant 1
+sub
+push constant 1920
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 31
+add
+push constant 1008
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 63
+add
+push constant 1023
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 95
+add
+push constant 1023
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 127
+add
+push constant 1023
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 159
+add
+push constant 1023
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 191
+add
+push constant 1008
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 223
+add
+push constant 1920
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Bullet.draw_enemy_clear 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 1
+add
+pop local 0
+push local 0
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Bullet.move_left 1
+push argument 0
+pop pointer 0
+push constant 22
+pop local 0
+push pointer 0
+push this 0
+call Bullet.trans_row_2enemy_bullet 2
+pop this 4
+push pointer 0
+push this 1
+call Bullet.trans_col_2enemy_bullet 2
+pop this 5
+push pointer 0
+push this 0
+push this 1
+call Bullet.cal_location 3
+pop this 3
+push this 5
+push constant 16
+sub
+push constant 0
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+push this 3
+call Bullet.clear 2
+pop temp 0
+push constant 1
+neg
+return
+label IF_FALSE0
+push pointer 0
+push this 3
+call Bullet.draw_enemy0 2
+pop temp 0
+push local 0
+call Sys.wait 1
+pop temp 0
+push pointer 0
+push this 3
+call Bullet.draw_enemy1 2
+pop temp 0
+push local 0
+call Sys.wait 1
+pop temp 0
+push pointer 0
+push this 3
+call Bullet.draw_enemy2 2
+pop temp 0
+push local 0
+call Sys.wait 1
+pop temp 0
+push pointer 0
+push this 3
+call Bullet.draw_enemy3 2
+pop temp 0
+push local 0
+call Sys.wait 1
+pop temp 0
+push pointer 0
+push this 3
+call Bullet.draw_enemy4 2
+pop temp 0
+push local 0
+call Sys.wait 1
+pop temp 0
+push pointer 0
+push this 3
+call Bullet.draw_enemy5 2
+pop temp 0
+push local 0
+call Sys.wait 1
+pop temp 0
+push pointer 0
+push this 3
+call Bullet.draw_enemy6 2
+pop temp 0
+push local 0
+call Sys.wait 1
+pop temp 0
+push pointer 0
+push this 3
+call Bullet.draw_enemy7 2
+pop temp 0
+push local 0
+call Sys.wait 1
+pop temp 0
+push pointer 0
+push this 3
+call Bullet.draw_enemy8 2
+pop temp 0
+push local 0
+call Sys.wait 1
+pop temp 0
+push pointer 0
+push this 3
+call Bullet.draw_enemy9 2
+pop temp 0
+push local 0
+call Sys.wait 1
+pop temp 0
+push pointer 0
+push this 3
+call Bullet.draw_enemy10 2
+pop temp 0
+push local 0
+call Sys.wait 1
+pop temp 0
+push pointer 0
+push this 3
+call Bullet.draw_enemy11 2
+pop temp 0
+push local 0
+call Sys.wait 1
+pop temp 0
+push pointer 0
+push this 3
+call Bullet.draw_enemy12 2
+pop temp 0
+push local 0
+call Sys.wait 1
+pop temp 0
+push pointer 0
+push this 3
+call Bullet.draw_enemy13 2
+pop temp 0
+push local 0
+call Sys.wait 1
+pop temp 0
+push pointer 0
+push this 3
+call Bullet.draw_enemy14 2
+pop temp 0
+push local 0
+call Sys.wait 1
+pop temp 0
+push pointer 0
+push this 3
+call Bullet.draw_enemy15 2
+pop temp 0
+push local 0
+call Sys.wait 1
+pop temp 0
+push pointer 0
+push this 3
+call Bullet.draw_enemy16 2
+pop temp 0
+push local 0
+call Sys.wait 1
+pop temp 0
+push this 1
+push constant 16
+add
+pop this 1
+push constant 1
+return

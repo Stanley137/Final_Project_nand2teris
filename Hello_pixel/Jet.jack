@@ -14,8 +14,15 @@ class Jet{
         do draw0(((trans_row_2jet(row))*32)+((trans_col_2jet(col))/16)); // 32 * 30 + 15/16
         return this;
     }
+<<<<<<< Updated upstream
     // check the damage
 
+=======
+    // check whether hit the enemy
+    method void hit_enemy(int row,int col){
+       return; 
+    }
+>>>>>>> Stashed changes
     // shoot the bullet
     method void fire_bullet(){
         return;

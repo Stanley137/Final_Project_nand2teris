@@ -1,0 +1,21 @@
+class Main {
+    function void main() {
+        do Main.draw((100*32)+(100/16));
+        return;
+    }
+
+    function void draw(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        do Memory.poke(memAddress, 15);
+        do Memory.poke(memAddress +32, 127);
+        do Memory.poke(memAddress +64, 2046);
+        do Memory.poke(memAddress +96, 2046);
+        do Memory.poke(memAddress +128, 2046);
+        do Memory.poke(memAddress +160, 2046);
+        do Memory.poke(memAddress +192, 127);
+        do Memory.poke(memAddress +224, 15);
+        return;
+    }
+}
