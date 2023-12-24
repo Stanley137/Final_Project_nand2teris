@@ -1,0 +1,27 @@
+class Main {
+    function void main() {
+        var Jet jet;
+        let jet = Jet.new(80, 80, 2);
+        do jet.move_right();
+        do jet.move_left();
+        do jet.move_up();
+        do jet.move_down();
+        do jet.fire();
+        do jet.fire();
+        do jet.fire();
+        do jet.fire();
+        do jet.fire();
+        do jet.fire();
+        do jet.fire();
+        do jet.fire();
+        do jet.fire();
+        do jet.fire();
+        do jet.fire();
+        do jet.fire();
+        do jet.fire();
+        do jet.fire();
+        do jet.fire();
+        do jet.fire();
+        return;
+    }
+}
