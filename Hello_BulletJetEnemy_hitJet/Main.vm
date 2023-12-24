@@ -1,0 +1,42 @@
+function Main.main 6
+push constant 100
+push constant 400
+push constant 10
+call Enemy.new 3
+pop local 0
+push constant 100
+push constant 100
+push constant 10
+call Jet.new 3
+pop local 1
+label WHILE_EXP0
+push local 4
+push constant 100
+lt
+not
+if-goto WHILE_END0
+push local 1
+call Jet.get_row 1
+pop local 2
+push local 1
+call Jet.get_col 1
+pop local 3
+push local 0
+call Enemy.fire 1
+pop temp 0
+push local 0
+push local 2
+push local 3
+call Enemy.hit_jet 3
+pop local 5
+push local 5
+call Output.printInt 1
+pop temp 0
+push local 4
+push constant 1
+add
+pop local 4
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
