@@ -1,0 +1,22 @@
+class Main{
+
+    function void main(){
+        var Enemy enemy;
+        var Jet jet;
+        var int jet_row;
+        var int jet_col;
+        var int i;
+        var int hit;
+        let enemy = Enemy.new(100, 400, 10);
+        let jet = Jet.new(100, 100, 10);
+        while(i < 100){
+            let jet_row = jet.get_row();
+            let jet_col = jet.get_col();
+            do enemy.fire();
+            let hit = enemy.hit_jet(jet_row, jet_col);
+            do Output.printInt(hit);
+            let i = i + 1;
+        }
+        return;
+    }
+}
