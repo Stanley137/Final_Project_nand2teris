@@ -1,0 +1,15 @@
+class Main{
+    function void main(){
+        var Enemy enemy;
+        var int i;
+        let i = 0;
+        let enemy = Enemy.new(100, 400, 1);
+        
+        while(i < 1000){
+            do enemy.fire();
+            let i = i + 1;
+        }
+        return;
+    }
+
+}
