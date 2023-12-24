@@ -1,0 +1,20 @@
+function Main.main 5
+push constant 100
+push constant 100
+push constant 1
+call Bullet.new 3
+pop local 3
+push constant 200
+push constant 50
+push constant 1
+neg
+call Bullet.new 3
+pop local 4
+push local 3
+call Bullet.move_right 1
+pop temp 0
+push local 4
+call Bullet.move_left 1
+pop temp 0
+push constant 0
+return
