@@ -1,4 +1,4 @@
-function Main.main 1
+function Main.main 2
 call Game.new 0
 pop local 0
 push local 0
@@ -7,6 +7,23 @@ push constant 5
 push constant 4
 push constant 1
 call Game.init 5
+pop temp 0
+push local 0
+call Game.run 1
+pop local 1
+push local 1
+push constant 1
+neg
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 0
+call Game.over 1
+pop temp 0
+label IF_FALSE0
+push local 1
+call Output.printInt 1
 pop temp 0
 push constant 0
 return

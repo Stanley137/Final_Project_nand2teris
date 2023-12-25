@@ -98,6 +98,16 @@ push constant 16
 call Math.divide 2
 add
 return
+function Enemy.get_row 0
+push argument 0
+pop pointer 0
+push this 0
+return
+function Enemy.get_col 0
+push argument 0
+pop pointer 0
+push this 1
+return
 function Enemy.get_hp 0
 push argument 0
 pop pointer 0
@@ -273,6 +283,17 @@ push this 15
 push constant 1
 neg
 eq
+push this 0
+push constant 1
+neg
+eq
+push this 1
+and
+push constant 1
+neg
+eq
+not
+and
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
@@ -298,6 +319,9 @@ pop temp 0
 push constant 0
 pop this 11
 label IF_FALSE0
+push this 9
+call Bullet.move_left 1
+pop this 15
 push this 9
 call Bullet.move_left 1
 pop this 15
@@ -343,10 +367,10 @@ sub
 call Math.abs 1
 pop local 3
 push local 3
-push constant 8
+push constant 10
 lt
 push local 4
-push constant 13
+push constant 15
 lt
 and
 if-goto IF_TRUE0
@@ -2175,9 +2199,11 @@ call Memory.deAlloc 1
 pop temp 0
 push constant 0
 return
-function Enemy.move 0
+function Enemy.move 1
 push argument 0
 pop pointer 0
+push constant 3
+pop local 0
 push pointer 0
 push this 0
 push this 1
@@ -2193,10 +2219,6 @@ lt
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
-push pointer 0
-push this 4
-call Enemy.clear 2
-pop temp 0
 push constant 1
 neg
 return
@@ -2205,56 +2227,56 @@ push pointer 0
 push this 4
 call Enemy.draw0 2
 pop temp 0
-push constant 22
+push local 0
 call Sys.wait 1
 pop temp 0
 push pointer 0
 push this 4
 call Enemy.draw1 2
 pop temp 0
-push constant 22
+push local 0
 call Sys.wait 1
 pop temp 0
 push pointer 0
 push this 4
 call Enemy.draw2 2
 pop temp 0
-push constant 22
+push local 0
 call Sys.wait 1
 pop temp 0
 push pointer 0
 push this 4
 call Enemy.draw3 2
 pop temp 0
-push constant 22
+push local 0
 call Sys.wait 1
 pop temp 0
 push pointer 0
 push this 4
 call Enemy.draw4 2
 pop temp 0
-push constant 22
+push local 0
 call Sys.wait 1
 pop temp 0
 push pointer 0
 push this 4
 call Enemy.draw5 2
 pop temp 0
-push constant 22
+push local 0
 call Sys.wait 1
 pop temp 0
 push pointer 0
 push this 4
 call Enemy.draw6 2
 pop temp 0
-push constant 22
+push local 0
 call Sys.wait 1
 pop temp 0
 push pointer 0
 push this 4
 call Enemy.draw7 2
 pop temp 0
-push constant 22
+push local 0
 call Sys.wait 1
 pop temp 0
 push pointer 0

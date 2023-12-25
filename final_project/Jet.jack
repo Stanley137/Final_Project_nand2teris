@@ -51,7 +51,7 @@ class Jet{
         let b_row = bullet.get_row();
         let b_col = bullet.get_col();
         // the length of enemy's wing, 19
-        if((Math.abs(b_col -e_col) < 10) & (Math.abs(e_row - b_row) < 12)){
+        if((Math.abs(b_col -e_col) < 10) & (Math.abs(e_row - b_row) < 15)){
             do bullet.clear(((b_row - 3)*32)+((b_col - 11)/16));
             let hit = -1;
             return 1;
@@ -72,6 +72,7 @@ class Jet{
             do bullet.set_row(row - 2);
             do bullet.set_col(col + 8 + 11 + 5);
         }
+        let hit = bullet.move_right();
         let hit = bullet.move_right();
         return;
         // check every bullets
@@ -1054,6 +1055,8 @@ class Jet{
         return;
     }
     method void move_right (){
+        var int waitTime;
+        let waitTime = 3;
         let trans_row = trans_row_2jet(row);
         let trans_col = trans_col_2jet(col);
         if((trans_col + 16) > 511){
@@ -1061,27 +1064,29 @@ class Jet{
         }
         let location = (32*trans_row) + (trans_col/16);
         do draw0(location);
-        do Sys.wait(22);
+        do Sys.wait(waitTime);
         do draw1_r(location);
-        do Sys.wait(22);
+        do Sys.wait(waitTime);
         do draw2_r(location);
-        do Sys.wait(22);
+        do Sys.wait(waitTime);
         do draw3_r(location);
-        do Sys.wait(22);
+        do Sys.wait(waitTime);
         do draw4_r(location);
-        do Sys.wait(22);
+        do Sys.wait(waitTime);
         do draw5_r(location);
-        do Sys.wait(22);
+        do Sys.wait(waitTime);
         do draw6_r(location);
-        do Sys.wait(22);
+        do Sys.wait(waitTime);
         do draw7_r(location);
-        do Sys.wait(22);
+        do Sys.wait(waitTime);
         do draw8_r(location);
-        do Sys.wait(22);
+        do Sys.wait(waitTime);
         let col = col + 16;
         return;
     }
     method void move_left(){
+        var int waitTime;
+        let waitTime = 3;
         let trans_row = trans_row_2jet(row);
         let trans_col = trans_col_2jet(col);
         let location = (32*trans_row) + (trans_col/16);
@@ -1089,27 +1094,29 @@ class Jet{
             return;
         }
         do draw0(location);
-        do Sys.wait(22);
+        do Sys.wait(waitTime);
         do draw1_l(location);
-        do Sys.wait(22);
+        do Sys.wait(waitTime);
         do draw2_l(location);
-        do Sys.wait(22);
+        do Sys.wait(waitTime);
         do draw3_l(location);
-        do Sys.wait(22);
+        do Sys.wait(waitTime);
         do draw4_l(location);
-        do Sys.wait(22);
+        do Sys.wait(waitTime);
         do draw5_l(location);
-        do Sys.wait(22);
+        do Sys.wait(waitTime);
         do draw6_l(location);
-        do Sys.wait(22);
+        do Sys.wait(waitTime);
         do draw7_l(location);
-        do Sys.wait(22);
+        do Sys.wait(waitTime);
         do draw8_l(location);
-        do Sys.wait(22);
+        do Sys.wait(waitTime);
         let col = col - 16;
         return;
     }
     method void move_up(){
+        var int waitTime;
+        let waitTime = 3;
         let trans_row = trans_row_2jet(row);
         let trans_col = trans_col_2jet(col);
         if((trans_row-16) < 0){
@@ -1119,7 +1126,7 @@ class Jet{
         let frame = 0;
         while(frame < 8){
             do draw_up(location);
-            do Sys.wait(22);
+            do Sys.wait(waitTime);
             let row = row - 2;
             let location = (32*trans_row_2jet(row)) + (trans_col_2jet(col)/16);
             let frame = frame + 1;
@@ -1127,6 +1134,8 @@ class Jet{
         return;
     }
     method void move_down(){
+        var int waitTime;
+        let waitTime = 3;
         let trans_row = trans_row_2jet(row);
         let trans_col = trans_col_2jet(col);
         if((trans_row + 50) > 255){
@@ -1136,7 +1145,7 @@ class Jet{
         let frame = 0;
         while (frame < 8) {
             do draw_down(location);
-            do Sys.wait(22);
+            do Sys.wait(waitTime);
             // do draw2_d(location);
             let row = row + 2;
             let location = (32*trans_row_2jet(row)) + (trans_col_2jet(col)/16);

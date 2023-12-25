@@ -54,6 +54,12 @@ class Enemy {
         let trans_col = col - 8;
         return (trans_row * 32) + (trans_col / 16);
     }
+    method int get_row(){
+        return row;
+    }
+    method int get_col(){
+        return col;
+    }
     // get hp
     method int get_hp(){
         return hp;
@@ -157,6 +163,7 @@ class Enemy {
                 let first_shot = false;
             }
             let hit = bullet.move_left();
+            let hit = bullet.move_left();
             let b_index = b_index + 1;
         }
         return;
@@ -178,7 +185,7 @@ class Enemy {
             let bullet_col = bullet.get_col();
             let diff_row = Math.abs(obj_row - bullet_row);
             let diff_col = Math.abs(obj_col - bullet_col);
-            if((diff_col < 8) & (diff_row < 13)){
+            if((diff_col < 10) & (diff_row < 15)){
                 do bullet.clear((bullet_row-3) * 32 + (bullet_col / 16));
                 let hit = -1;
                 return 1;
@@ -542,26 +549,28 @@ class Enemy {
         return;
     }
     method int move(){
+        var int waitTime;
+        let waitTime = 3;
         let location = cal_location(row, col);
         if((trans_col_f(col) - 16) < 0){
             return -1;
         }
         do draw0(location);
-        do Sys.wait(22);
+        do Sys.wait(waitTime);
         do draw1(location);
-        do Sys.wait(22);
+        do Sys.wait(waitTime);
         do draw2(location);
-        do Sys.wait(22);
+        do Sys.wait(waitTime);
         do draw3(location);
-        do Sys.wait(22);
+        do Sys.wait(waitTime);
         do draw4(location);
-        do Sys.wait(22);
+        do Sys.wait(waitTime);
         do draw5(location);
-        do Sys.wait(22);
+        do Sys.wait(waitTime);
         do draw6(location);
-        do Sys.wait(22);
+        do Sys.wait(waitTime);
         do draw7(location);
-        do Sys.wait(22);
+        do Sys.wait(waitTime);
         do draw8(location);
         let col = col - 16;
         return 1;

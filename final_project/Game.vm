@@ -1,5 +1,5 @@
 function Game.new 0
-push constant 3
+push constant 6
 call Memory.alloc 1
 pop pointer 0
 push pointer 0
@@ -7,27 +7,31 @@ return
 function Game.init 3
 push argument 0
 pop pointer 0
+push argument 2
+pop this 5
+push argument 3
+pop this 4
 push constant 128
 push constant 30
 push argument 2
 call Jet.new 3
 pop this 0
 push constant 256
-push argument 3
+push this 4
 push constant 1
 add
 call Math.divide 2
 pop local 2
-push argument 3
+push this 4
 call Array.new 1
-pop this 2
+pop this 3
 push constant 0
 pop local 0
 push constant 0
 pop local 1
 label WHILE_EXP0
 push local 0
-push argument 3
+push this 4
 lt
 not
 if-goto WHILE_END0
@@ -36,7 +40,7 @@ push local 2
 add
 pop local 1
 push local 0
-push this 2
+push this 3
 add
 push local 1
 push constant 480
@@ -61,14 +65,255 @@ call Game.draw_hp_bar 4
 pop temp 0
 push constant 0
 return
-function Game.run 1
+function Game.run 7
 push argument 0
 pop pointer 0
+push this 4
+pop local 3
+label WHILE_EXP0
 push constant 0
+not
+not
+if-goto WHILE_END0
+push this 0
+call Jet.fire 1
+pop temp 0
+push constant 0
+pop local 4
+label WHILE_EXP1
+push local 4
+push this 4
+lt
+not
+if-goto WHILE_END1
+push local 4
+push this 3
+add
+pop pointer 1
+push that 0
+pop this 2
+push this 2
+call Enemy.fire 1
+pop temp 0
+push local 4
+push constant 1
+add
+pop local 4
+goto WHILE_EXP1
+label WHILE_END1
+push constant 0
+pop local 4
+label WHILE_EXP2
+push local 4
+push this 4
+lt
+not
+if-goto WHILE_END2
+push local 4
+push this 3
+add
+pop pointer 1
+push that 0
+pop this 2
+push this 2
+call Enemy.get_row 1
+pop local 5
+push this 2
+call Enemy.get_col 1
+pop local 6
+push this 2
+push this 0
+call Jet.get_row 1
+push this 0
+call Jet.get_col 1
+call Enemy.hit_jet 3
+pop local 2
+push local 2
+push constant 1
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 0
+call Jet.damage 1
+pop temp 0
+label IF_FALSE0
+push this 0
+call Jet.get_hp 1
+push constant 0
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 1
+neg
+return
+label IF_FALSE1
+push this 0
+push local 5
+push local 6
+call Jet.hit_enemy 3
+pop local 1
+push local 1
+push constant 1
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push this 2
+call Enemy.damage 1
+pop temp 0
+label IF_FALSE2
+push this 2
+call Enemy.get_hp 1
+push constant 0
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push local 3
+push constant 1
+sub
+pop local 3
+push this 2
+call Enemy.dead 1
+pop temp 0
+label IF_FALSE3
+push local 3
+push constant 0
+eq
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push constant 1
+return
+label IF_FALSE4
+push local 4
+push constant 1
+add
+pop local 4
+goto WHILE_EXP2
+label WHILE_END2
+call Keyboard.keyPressed 0
+pop local 0
+push local 0
+push constant 87
+eq
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+push this 0
+call Jet.move_up 1
+pop temp 0
+label IF_FALSE5
+push local 0
+push constant 65
+eq
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
+push this 0
+call Jet.move_left 1
+pop temp 0
+label IF_FALSE6
+push local 0
+push constant 83
+eq
+if-goto IF_TRUE7
+goto IF_FALSE7
+label IF_TRUE7
+push this 0
+call Jet.move_down 1
+pop temp 0
+label IF_FALSE7
+push local 0
+push constant 68
+eq
+if-goto IF_TRUE8
+goto IF_FALSE8
+label IF_TRUE8
+push this 0
+call Jet.move_right 1
+pop temp 0
+label IF_FALSE8
+push constant 0
+pop local 4
+label WHILE_EXP3
+push local 4
+push this 4
+lt
+not
+if-goto WHILE_END3
+push local 4
+push this 3
+add
+pop pointer 1
+push that 0
+pop this 2
+push this 2
+call Enemy.move 1
+pop local 1
+push local 1
+push constant 1
+neg
+eq
+if-goto IF_TRUE9
+goto IF_FALSE9
+label IF_TRUE9
+push this 0
+call Jet.damage 1
+pop temp 0
+push this 2
+call Enemy.dead 1
+pop temp 0
+push local 3
+push constant 1
+sub
+pop local 3
+label IF_FALSE9
+push local 4
+push constant 1
+add
+pop local 4
+goto WHILE_EXP3
+label WHILE_END3
+push pointer 0
+push constant 235
+push constant 5
+push this 0
+call Jet.get_hp 1
+call Game.draw_hp_bar 4
+pop temp 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 1
+neg
 return
 function Game.over 0
 push argument 0
 pop pointer 0
+push constant 9
+call String.new 1
+push constant 71
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 109
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 118
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
 push constant 0
 return
 function Game.draw_hp_square 1
@@ -174,6 +419,109 @@ call Memory.poke 2
 pop temp 0
 push constant 0
 return
+function Game.draw_hp_blank 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 1
+add
+pop local 0
+push local 0
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
 function Game.draw_hp_bar 2
 push argument 0
 pop pointer 0
@@ -207,5 +555,25 @@ add
 pop local 0
 goto WHILE_EXP0
 label WHILE_END0
+label WHILE_EXP1
+push local 0
+push this 5
+lt
+not
+if-goto WHILE_END1
+push pointer 0
+push local 1
+call Game.draw_hp_blank 2
+pop temp 0
+push local 1
+push constant 1
+add
+pop local 1
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP1
+label WHILE_END1
 push constant 0
 return

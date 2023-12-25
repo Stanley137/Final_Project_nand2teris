@@ -1631,7 +1631,7 @@ return
 function Bullet.move_right 1
 push argument 0
 pop pointer 0
-push constant 3
+push constant 1
 pop this 7
 push pointer 0
 push this 0
@@ -3162,7 +3162,7 @@ return
 function Bullet.move_left 1
 push argument 0
 pop pointer 0
-push constant 3
+push constant 1
 pop this 7
 push pointer 0
 push this 0
