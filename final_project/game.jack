@@ -22,6 +22,7 @@ class game {
         let i = 0;
         let step = 0;
         while(i<num_enemy){
+            // enemy's level to hp = level * (hp-1)
             let step = step + len;
             let enemys[i] = Enemy.new(step, 480, hp);
             let i = i+1;
@@ -29,7 +30,7 @@ class game {
         return;
     }
     method void run () {
-        // enemy's level to hp = level * (hp-1)
+        
 
     }
     method void over(){

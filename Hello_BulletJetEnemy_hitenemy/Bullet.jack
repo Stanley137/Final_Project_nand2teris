@@ -1,5 +1,4 @@
 class Bullet {
-
     // center of the bullet (row, col), (3, 11) left up
     field int row; 
     field int col; 
@@ -12,6 +11,7 @@ class Bullet {
     field bool status;
 
     field int waitTime;
+
 
     constructor Bullet new(int r,int c,int vel){
         let row = r;
@@ -78,6 +78,7 @@ class Bullet {
         return((trans_row*32)+(trans_col/16));
     }
 
+// deaw0 ~ draw16 and move_right are for the bullets of the jet   
     method void draw0(int location) {
         var int memAddress; 
         let memAddress = 16384+location;
@@ -481,7 +482,6 @@ class Bullet {
         let col = col + 16;
         return 1;
     }
-
     method void draw_enemy0(int location) {
         var int memAddress; 
         let memAddress = 16384+location;
@@ -796,7 +796,6 @@ class Bullet {
         do Memory.poke(memAddress +223, 1920);
         return;
     }
-
     method int move_left(){
         var int location;
         let waitTime = 3; // 1000(msec) / 45(Hz)
