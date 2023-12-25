@@ -188,7 +188,7 @@ class Enemy {
         return 0;
     }
 
-    method void dead(){
+    method void dead(){ // hp = 0
         let location = cal_location(row, col);
         do clear(location);
         let row = -1;
