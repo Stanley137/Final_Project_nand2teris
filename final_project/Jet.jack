@@ -65,9 +65,9 @@ class Jet{
         return col;
     }
     // shoot the bullet
-    method void fire(){ // center of jet =  (13, 8) (col, row)
+    method void fire(bool relocate){ // center of jet =  (13, 8) (col, row)
         let b_index = 0;
-        if(hit = -1){ // hit the wall
+        if(hit = -1 | relocate){ // hit the wall
             let bullet = bullets[b_index];
             do bullet.set_row(row - 2);
             do bullet.set_col(col + 8 + 11 + 5);
