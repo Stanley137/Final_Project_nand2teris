@@ -321,18 +321,6 @@ pop pointer 1
 push that 0
 pop this 9
 push this 9
-call Bullet.get_status 1
-pop local 3
-push local 3
-push constant 0
-eq
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
-push constant 0
-return
-label IF_FALSE0
-push this 9
 call Bullet.get_row 1
 pop local 1
 push this 9
@@ -349,15 +337,15 @@ sub
 call Math.abs 1
 pop local 4
 push local 4
-push constant 20
+push constant 25
 lt
 push local 5
-push constant 23
+push constant 25
 lt
 and
-if-goto IF_TRUE1
-goto IF_FALSE1
-label IF_TRUE1
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
 push this 9
 push local 1
 push constant 3
@@ -375,7 +363,7 @@ neg
 pop this 15
 push constant 1
 return
-label IF_FALSE1
+label IF_FALSE0
 push local 0
 push constant 1
 add

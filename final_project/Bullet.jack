@@ -425,11 +425,11 @@ class Bullet {
         // else{
         //     do draw_enemy_clear(location);
         // }
-        do draw_clear(location);
         // let row = -1;
         // let col = -1;
-        let status = false;
+        // let status = false;
         // do Output.printString("cleared");
+        do draw_clear(location);
         return;
     }
 

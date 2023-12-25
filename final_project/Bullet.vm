@@ -1606,8 +1606,6 @@ push argument 1
 call Bullet.draw_clear 2
 pop temp 0
 push constant 0
-pop this 6
-push constant 0
 return
 function Bullet.move_right 1
 push argument 0

@@ -155,7 +155,7 @@ class Enemy {
         let b_index = 0;
         let bullet = bullets[b_index];
         let bullet_status = bullet.get_status();
-        if(hit = -1){ // not shot yet and the enemy is still alive
+        if(hit = -1){ // hit the wall or enemy
             do bullet.set_row(row - 1);
             do bullet.set_col(col - 8 - 11);
         }
@@ -188,15 +188,15 @@ class Enemy {
 
         while(b_index < num_bullets){
             let bullet = bullets[b_index];
-            let bullet_status = bullet.get_status();
-            if(bullet_status = false){
-                return 0;
-            }
+            // let bullet_status = bullet.get_status();
+            // if(bullet_status = false){
+            //     return 0;
+            // }
             let bullet_row = bullet.get_row();
             let bullet_col = bullet.get_col();  
             let diff_row = Math.abs(obj_row - bullet_row);
             let diff_col = Math.abs(obj_col - bullet_col);
-            if((diff_col < 20) & (diff_row < 23)){
+            if((diff_col < 25) & (diff_row < 25)){
                 do bullet.clear((bullet_row-3) * 32 + (bullet_col / 16));
                 let hit = -1;
                 return 1;
