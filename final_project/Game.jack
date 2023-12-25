@@ -1,0 +1,112 @@
+class Game {
+    // attributes and methods
+    field Jet jet; // our flight
+    field Map map; // map(building、enemy)
+    field Array enemys;
+    
+    constructor Game new(){
+        return this;
+    }
+    method void init(int level,int jet_hp,int num_enemy,int enemy_hp){ 
+        var int i;
+        var int step;
+        var int len;
+        let jet = Jet.new(128, 30, jet_hp); // center of the jet
+        let len = 256 / (num_enemy + 1); // the distance between enemy
+        // init the map????
+        // map.init(level);
+        // put enemy
+        let enemys = Array.new(num_enemy);
+        let i = 0;
+        let step = 0;
+        while(i<num_enemy){
+            let step = step + len;
+            let enemys[i] = Enemy.new(step, 480, enemy_hp);
+            let i = i+1;
+        }
+        // draw life bar
+        do draw_hp_bar(235, 5, jet.get_hp());
+        return;
+    }
+    method void run () {
+        var char key;
+        return;
+    }
+    method void over(){
+        // clean all memory and data
+        // draw some pictures
+        return;
+    }
+    method void draw_hp_square(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        do Memory.poke(memAddress, 16383);
+        do Memory.poke(memAddress +32, 16383);
+        do Memory.poke(memAddress +64, 16383);
+        do Memory.poke(memAddress +96, 16383);
+        do Memory.poke(memAddress +128, 16383);
+        do Memory.poke(memAddress +160, 16383);
+        do Memory.poke(memAddress +192, 16383);
+        do Memory.poke(memAddress +224, 16383);
+        do Memory.poke(memAddress +256, 16383);
+        do Memory.poke(memAddress +288, 16383);
+        do Memory.poke(memAddress +320, 16383);
+        do Memory.poke(memAddress +352, 16383);
+        do Memory.poke(memAddress +384, 16383);
+        do Memory.poke(memAddress +416, 16383);
+        do Memory.poke(memAddress +448, 16383);
+        do Memory.poke(memAddress +480, 16383);
+        return;
+    }
+
+    method void draw_hp_bar(int row, int col, int hp){ // leftest position : (235, 5) (row, col)
+        var int i;
+        var int location;
+        let i = 0;
+        let location = (row*32) + (col/16);
+        while(i < hp){
+            do draw_hp_square(location);
+            let location = location + 1;
+            let i = i + 1;
+        }
+        return;
+    }
+
+    method void draw_hp_square(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        do Memory.poke(memAddress, 16383);
+        do Memory.poke(memAddress +32, 16383);
+        do Memory.poke(memAddress +64, 16383);
+        do Memory.poke(memAddress +96, 16383);
+        do Memory.poke(memAddress +128, 16383);
+        do Memory.poke(memAddress +160, 16383);
+        do Memory.poke(memAddress +192, 16383);
+        do Memory.poke(memAddress +224, 16383);
+        do Memory.poke(memAddress +256, 16383);
+        do Memory.poke(memAddress +288, 16383);
+        do Memory.poke(memAddress +320, 16383);
+        do Memory.poke(memAddress +352, 16383);
+        do Memory.poke(memAddress +384, 16383);
+        do Memory.poke(memAddress +416, 16383);
+        do Memory.poke(memAddress +448, 16383);
+        do Memory.poke(memAddress +480, 16383);
+        return;
+    }
+
+    method void draw_hp_bar(int row, int col, int hp){ // leftest position : (235, 5) (row, col)
+        var int i;
+        var int location;
+        let i = 0;
+        let location = (row*32) + (col/16);
+        while(i < hp){
+            do draw_hp_square(location);
+            let location = location + 1;
+            let i = i + 1;
+        }
+        return;
+    }
+
+}
