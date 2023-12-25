@@ -2,22 +2,18 @@ class Main {
     function void main() {
         var Game game;
         var int result;
-        // level 1
-        let game = Game.new(); 
-        do game.init(1, 3, 1, 1); // (level, jet_hp, num_enemy, enemy_hp)
-        let result = game.run();
-        do game.over(result);
-        // level 2
+        var int num_enemy;
+        let num_enemy = 1;
+        let result = 1;
         let game = Game.new();
-        do game.init(2, 3, 2, 1);
-        let result = game.run();
-        do game.over(result);
-        // level 3
-        let game = Game.new();
-        do game.init(2, 3, 3, 1);
-        let result = game.run();
-        do game.over(result);
-        // do Output.printInt(result);
+        do game.start_menu();
+        while(~(result = -1)){
+            do game.init(1, 3, num_enemy, 1); // (level, jet_hp, num_enemy, enemy_hp)
+            let result = game.run();
+            do game.over(result);
+            let num_enemy = num_enemy + 1;
+        }
+
         return;
     }
 }
