@@ -1,10 +1,22 @@
-function Main.main 2
+function Main.main 3
+push constant 1
+pop local 2
+push constant 1
+pop local 1
 call Game.new 0
 pop local 0
+label WHILE_EXP0
+push local 1
+push constant 1
+neg
+eq
+not
+not
+if-goto WHILE_END0
 push local 0
 push constant 1
 push constant 3
-push constant 1
+push local 2
 push constant 1
 call Game.init 5
 pop temp 0
@@ -15,37 +27,11 @@ push local 0
 push local 1
 call Game.over 2
 pop temp 0
-call Game.new 0
-pop local 0
-push local 0
-push constant 2
-push constant 3
-push constant 2
+push local 2
 push constant 1
-call Game.init 5
-pop temp 0
-push local 0
-call Game.run 1
-pop local 1
-push local 0
-push local 1
-call Game.over 2
-pop temp 0
-call Game.new 0
-pop local 0
-push local 0
-push constant 2
-push constant 3
-push constant 3
-push constant 1
-call Game.init 5
-pop temp 0
-push local 0
-call Game.run 1
-pop local 1
-push local 0
-push local 1
-call Game.over 2
-pop temp 0
+add
+pop local 2
+goto WHILE_EXP0
+label WHILE_END0
 push constant 0
 return

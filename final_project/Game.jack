@@ -109,6 +109,8 @@ class Game {
         do Output.moveCursor(13, 27);
         if(win = -1){
             do Output.printString("Game over");
+            do Sys.wait(3000);
+            do print_thanks_list();
         }
         else{
             do Output.printString("Level Up");
@@ -117,6 +119,25 @@ class Game {
         do Screen.clearScreen();
         return;
     }
+
+    method void print_thanks_list(){
+        // draw all memory and data
+        // print out people that we want to thank to
+        do Screen.clearScreen();
+        do Output.moveCursor(10, 20);
+        do Output.printString("Thanks to these people : ");
+        do Output.moveCursor(11, 26);
+        do Output.printString("Padde Lee");
+        do Output.moveCursor(12, 25);
+        do Output.printString("Sealmatt Lee");
+        do Output.moveCursor(13, 12);
+        do Output.printString("ErikUmble ( the author of JackBitMap editor)");
+        do Output.moveCursor(14, 16);
+        do Output.printString("Yung-Yu Chuang ( for the lectures )");
+        do Sys.wait(8000);
+        return;
+    }
+
     method void draw_hp_square(int location) {
         var int memAddress; 
         let memAddress = 16384+location;
