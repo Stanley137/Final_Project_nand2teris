@@ -31,6 +31,15 @@ class Jet{
         }
         return this;
     }
+    // get hp
+    method int get_hp(){
+        return hp;
+    }
+    // damage
+    method void damage(){
+        let hp = hp - 1;
+        return;
+    }
     // check whether hit the enemy
     method int hit_enemy(int e_row,int e_col){
         var int b_row;

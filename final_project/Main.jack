@@ -1,8 +1,9 @@
 class Main {
     function void main() {
-        let game = game.new();
-        do game.run();
-        do game.over();
+        var Game game;
+        // level 1
+        let game = Game.new(); 
+        do game.init(1, 5, 4, 1); // (level, jet_hp, num_enemy, enemy_hp)
         return;
     }
 }

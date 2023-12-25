@@ -53,6 +53,15 @@ class Enemy {
         let trans_row = row - 10;
         let trans_col = col - 8;
         return (trans_row * 32) + (trans_col / 16);
+    }
+    // get hp
+    method int get_hp(){
+        return hp;
+    }
+    // damage
+    method void damage(){
+        let hp = hp - 1;
+        return;
     } 
     method void fire_movePerPixel(){ // center of enemy =  (8, 9) (col, row)
         //var bool is_shot;
