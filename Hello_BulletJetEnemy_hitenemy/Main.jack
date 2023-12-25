@@ -1,0 +1,28 @@
+class Main {
+    function void main() {
+        var Jet jet;
+        var Enemy enemy;
+        var int hit;
+        var int i;
+        var int e_row;
+        var int e_col;
+        let jet = Jet.new(100, 80 , 3);
+        let enemy = Enemy.new(100, 400, 3);
+        let hit = 0;
+        let i = 0;
+        while(i<50){
+            // do Output.printInt(enemy);
+            // do Output.printString("PPP");
+            let e_row = enemy.get_row();
+            let e_col = enemy.get_col();
+            let hit = jet.hit_enemy(e_row, e_col); 
+            do Output.printInt(hit);
+            if(hit = 1){
+                do enemy.dead();
+            }
+            do jet.fire();
+            let i = i + 1;
+        }
+        return;
+    }
+}
