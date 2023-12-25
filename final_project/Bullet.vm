@@ -1601,29 +1601,10 @@ return
 function Bullet.clear 0
 push argument 0
 pop pointer 0
-push this 2
-push constant 0
-gt
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
 push pointer 0
 push argument 1
 call Bullet.draw_clear 2
 pop temp 0
-goto IF_END0
-label IF_FALSE0
-push pointer 0
-push argument 1
-call Bullet.draw_enemy_clear 2
-pop temp 0
-label IF_END0
-push constant 1
-neg
-pop this 0
-push constant 1
-neg
-pop this 1
 push constant 0
 pop this 6
 push constant 0

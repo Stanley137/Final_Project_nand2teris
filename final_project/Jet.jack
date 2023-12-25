@@ -44,9 +44,6 @@ class Jet{
     method int hit_enemy(int e_row,int e_col){
         var int b_row;
         var int b_col;
-        if((e_row = -1) | (e_col = -1)){
-            return 0;
-        }
         // get the bullet
         let b_index = 0;
         let bullet = bullets[b_index];
@@ -54,7 +51,8 @@ class Jet{
         let b_row = bullet.get_row();
         let b_col = bullet.get_col();
         // the length of enemy's wing, 19
-        if((Math.abs(b_col -e_col) < 10) & (Math.abs(e_row - b_row) < 25)){
+        if((Math.abs(b_col -e_col) < 20) & (Math.abs(e_row - b_row) < 15)){ // the col must be large
+            do Output.printString("Here");
             do bullet.clear(((b_row - 3)*32)+((b_col - 11)/16));
             let hit = -1;
             return 1;
@@ -72,9 +70,8 @@ class Jet{
         var int b_row;
         var int b_col;
         let b_index = 0;
-        
+        let bullet = bullets[b_index];
         if(hit = -1 | relocate){ // hit the wall
-            let bullet = bullets[b_index];
             let b_row = bullet.get_row();
             let b_col = bullet.get_col();
             do bullet.draw_clear(((b_row-3) * 32) + ((b_col-11) / 16));

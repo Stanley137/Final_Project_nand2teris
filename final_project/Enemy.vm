@@ -32,9 +32,9 @@ if-goto WHILE_END0
 push this 6
 push this 8
 add
-push constant 1
+push constant 10
 neg
-push constant 1
+push constant 10
 neg
 push constant 1
 neg
@@ -283,16 +283,14 @@ push this 15
 push constant 1
 neg
 eq
-push this 0
-push constant 1
-neg
-eq
-push this 1
+push this 5
+push constant 0
+gt
 and
-push constant 1
-neg
+push this 9
+call Bullet.get_status 1
+push constant 0
 eq
-not
 and
 if-goto IF_TRUE0
 goto IF_FALSE0
@@ -311,13 +309,6 @@ push constant 11
 sub
 call Bullet.set_col 2
 pop temp 0
-push this 9
-push constant 0
-not
-call Bullet.set_status 2
-pop temp 0
-push constant 0
-pop this 11
 label IF_FALSE0
 push this 9
 call Bullet.move_left 1
@@ -367,10 +358,10 @@ sub
 call Math.abs 1
 pop local 3
 push local 3
-push constant 10
+push constant 20
 lt
 push local 4
-push constant 15
+push constant 20
 lt
 and
 if-goto IF_TRUE0
@@ -414,12 +405,6 @@ push pointer 0
 push this 4
 call Enemy.clear 2
 pop temp 0
-push constant 1
-neg
-pop this 0
-push constant 1
-neg
-pop this 1
 push constant 0
 return
 function Enemy.draw0 1
@@ -2209,6 +2194,15 @@ push this 0
 push this 1
 call Enemy.cal_location 3
 pop this 4
+push this 5
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+return
+label IF_FALSE0
 push pointer 0
 push this 1
 call Enemy.trans_col_f 2
@@ -2216,13 +2210,13 @@ push constant 16
 sub
 push constant 0
 lt
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
 push constant 1
 neg
 return
-label IF_FALSE0
+label IF_FALSE1
 push pointer 0
 push this 4
 call Enemy.draw0 2

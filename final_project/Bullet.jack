@@ -419,14 +419,15 @@ class Bullet {
         return;
     }
     method void clear(int location){
-        if(v > 0){
-            do draw_clear(location);
-        }
-        else{
-            do draw_enemy_clear(location);
-        }
-        let row = -1;
-        let col = -1;
+        // if(v > 0){
+        //     do draw_clear(location);
+        // }
+        // else{
+        //     do draw_enemy_clear(location);
+        // }
+        do draw_clear(location);
+        // let row = -1;
+        // let col = -1;
         let status = false;
         // do Output.printString("cleared");
         return;

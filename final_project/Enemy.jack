@@ -37,7 +37,7 @@ class Enemy {
         let i = 0;
         let hit = -1;
         while(i < num_bullets){
-            let bullets[i] = Bullet.new(-1, -1, -1);
+            let bullets[i] = Bullet.new(-10, -10, -1); // change -1 to -10
             let i = i + 1;
         }
         do draw0(((trans_row_f(row))*32)+((trans_col_f(col))/16)); // 32 * 30 + 15/16
@@ -156,11 +156,9 @@ class Enemy {
         while(b_index < num_bullets){ // find a non-existing bullet
             let bullet = bullets[b_index];
             let bullet_status = bullet.get_status();
-            if(hit = -1 & ~(row = -1 & col = -1)){ // not shot yet and the enemy is still alive
+            if(hit = -1 & (hp>0) & (bullet.get_status() = false)){ // not shot yet and the enemy is still alive
                 do bullet.set_row(row - 1);
                 do bullet.set_col(col - 8 - 11);
-                do bullet.set_status(true);
-                let first_shot = false;
             }
             let hit = bullet.move_left();
             let hit = bullet.move_left();
@@ -185,7 +183,7 @@ class Enemy {
             let bullet_col = bullet.get_col();
             let diff_row = Math.abs(obj_row - bullet_row);
             let diff_col = Math.abs(obj_col - bullet_col);
-            if((diff_col < 10) & (diff_row < 15)){
+            if((diff_col < 20) & (diff_row < 23)){
                 do bullet.clear((bullet_row-3) * 32 + (bullet_col / 16));
                 let hit = -1;
                 return 1;
@@ -198,8 +196,8 @@ class Enemy {
     method void dead(){ // hp = 0
         let location = cal_location(row, col);
         do clear(location);
-        let row = -1;
-        let col = -1;
+        // let row = -10;
+        // let col = -10;
         return;
     }
 
@@ -552,6 +550,9 @@ class Enemy {
         var int waitTime;
         let waitTime = 1;
         let location = cal_location(row, col);
+        if(hp = 0){
+            return 0;
+        }  
         if((trans_col_f(col) - 16) < 0){
             return -1;
         }
