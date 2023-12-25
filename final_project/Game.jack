@@ -45,7 +45,7 @@ class Game {
         // do Output.printString("AAAAAA");
         while(true){
             // do jet_control();
-            do Output.printInt(current_enemy);
+            //do Output.printInt(current_enemy);
             // hit (jet&enemy) & enemy fire
             let e_index = 0;
             while(e_index < num_enemy){
@@ -106,6 +106,7 @@ class Game {
         // clean all memory and data
         // draw some pictures
         do Screen.clearScreen();
+        do Output.moveCursor(13, 27);
         if(win = -1){
             do Output.printString("Game over");
         }
@@ -113,6 +114,7 @@ class Game {
             do Output.printString("Level Up");
         }
         do Sys.wait(3000);
+        do Screen.clearScreen();
         return;
     }
     method void draw_hp_square(int location) {

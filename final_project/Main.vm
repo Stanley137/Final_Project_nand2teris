@@ -47,8 +47,5 @@ push local 0
 push local 1
 call Game.over 2
 pop temp 0
-push local 1
-call Output.printInt 1
-pop temp 0
 push constant 0
 return

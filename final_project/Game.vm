@@ -75,9 +75,6 @@ push constant 0
 not
 not
 if-goto WHILE_END0
-push this 5
-call Output.printInt 1
-pop temp 0
 push constant 0
 pop local 4
 label WHILE_EXP1
@@ -259,6 +256,10 @@ push argument 0
 pop pointer 0
 call Screen.clearScreen 0
 pop temp 0
+push constant 13
+push constant 27
+call Output.moveCursor 2
+pop temp 0
 push argument 1
 push constant 1
 neg
@@ -313,6 +314,8 @@ pop temp 0
 label IF_END0
 push constant 3000
 call Sys.wait 1
+pop temp 0
+call Screen.clearScreen 0
 pop temp 0
 push constant 0
 return

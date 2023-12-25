@@ -106,18 +106,6 @@ and
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
-push constant 4
-call String.new 1
-push constant 72
-call String.appendChar 2
-push constant 101
-call String.appendChar 2
-push constant 114
-call String.appendChar 2
-push constant 101
-call String.appendChar 2
-call Output.printString 1
-pop temp 0
 push this 13
 push local 0
 push constant 3

@@ -17,7 +17,7 @@ class Main {
         do game.init(2, 3, 3, 1);
         let result = game.run();
         do game.over(result);
-        do Output.printInt(result);
+        // do Output.printInt(result);
         return;
     }
 }
