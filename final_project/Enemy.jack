@@ -153,17 +153,26 @@ class Enemy {
         // if bullet touch the boundry or hit the enemy, 
         var int b_index;
         let b_index = 0;
-        while(b_index < num_bullets){ // find a non-existing bullet
-            let bullet = bullets[b_index];
-            let bullet_status = bullet.get_status();
-            if(hit = -1 & (hp>0) & (bullet.get_status() = false)){ // not shot yet and the enemy is still alive
-                do bullet.set_row(row - 1);
-                do bullet.set_col(col - 8 - 11);
-            }
-            let hit = bullet.move_left();
-            let hit = bullet.move_left();
-            let b_index = b_index + 1;
+        let bullet = bullets[b_index];
+        let bullet_status = bullet.get_status();
+        if(hit = -1){ // not shot yet and the enemy is still alive
+            do bullet.set_row(row - 1);
+            do bullet.set_col(col - 8 - 11);
         }
+        let hit = bullet.move_left();
+        let hit = bullet.move_left();
+        // let b_index = b_index + 1;
+        // while(b_index < num_bullets){ // find a non-existing bullet
+        //     let bullet = bullets[b_index];
+        //     let bullet_status = bullet.get_status();
+        //     if(hit = -1 & (hp>0) & (bullet_status = false)){ // not shot yet and the enemy is still alive
+        //         do bullet.set_row(row - 1);
+        //         do bullet.set_col(col - 8 - 11);
+        //     }
+        //     let hit = bullet.move_left();
+        //     let hit = bullet.move_left();
+        //     let b_index = b_index + 1;
+        // }
         return;
     }
 
@@ -171,7 +180,7 @@ class Enemy {
         var int b_index;
         var int bullet_row;
         var int bullet_col;
-
+        var bool bullet_status;
         var int diff_col;
         var int diff_row;
 
@@ -179,8 +188,12 @@ class Enemy {
 
         while(b_index < num_bullets){
             let bullet = bullets[b_index];
+            let bullet_status = bullet.get_status();
+            if(bullet_status = false){
+                return 0;
+            }
             let bullet_row = bullet.get_row();
-            let bullet_col = bullet.get_col();
+            let bullet_col = bullet.get_col();  
             let diff_row = Math.abs(obj_row - bullet_row);
             let diff_col = Math.abs(obj_col - bullet_col);
             if((diff_col < 20) & (diff_row < 23)){
@@ -542,8 +555,13 @@ class Enemy {
         return;
     }
     method void clear(int location){
+        var int b_row;
+        var int b_col;
+        let b_row = bullet.get_row();
+        let b_col = bullet.get_col();
         do draw_clear(location);
-        do Memory.deAlloc(this);
+        do bullet.clear(((b_row - 3)*32)+((b_col - 11)/16));
+        // do Memory.deAlloc(this); 
         return;
     }
     method int move(){
