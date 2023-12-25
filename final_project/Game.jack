@@ -4,6 +4,7 @@ class Game {
     field Map map; // map(building、enemy)
     field Enemy enemy;
     field Array enemys;
+    field int level;
     field int num_enemy;
     field int current_enemy;
     field int init_hp;
@@ -559,10 +560,11 @@ class Game {
     method int cal_location(int row, int col){
         return ((row*32) + (col/16));
     }
-    method void init(int level,int jet_hp,int num_e,int enemy_hp){ 
+    method void init(int Level,int jet_hp,int num_e,int enemy_hp){ 
         var int i;
         var int step;
         var int len;
+        let level = Level;
         let init_hp = jet_hp;
         let num_enemy = num_e;
         let current_enemy = num_enemy;
@@ -663,7 +665,8 @@ class Game {
             return;
         }
         else{
-            do Output.printString("Level Up");
+            do Output.printString("Level Up ");
+            do Output.printInt(level+1);
         }
         do Sys.wait(3000);
         do Screen.clearScreen();
