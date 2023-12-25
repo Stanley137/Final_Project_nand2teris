@@ -3194,8 +3194,14 @@ function Game.run 7
 push argument 0
 pop pointer 0
 label WHILE_EXP0
+push this 6
 push constant 0
-not
+gt
+push this 0
+call Jet.get_hp 1
+push constant 0
+gt
+and
 not
 if-goto WHILE_END0
 push constant 0
@@ -3350,6 +3356,9 @@ pop temp 0
 push this 2
 call Enemy.dead 1
 pop temp 0
+push this 2
+call Enemy.clean_hp 1
+pop temp 0
 push this 6
 push constant 1
 sub
@@ -3371,6 +3380,26 @@ call Game.draw_hp_bar 4
 pop temp 0
 goto WHILE_EXP0
 label WHILE_END0
+push this 0
+call Jet.get_hp 1
+push constant 0
+eq
+if-goto IF_TRUE8
+goto IF_FALSE8
+label IF_TRUE8
+push constant 1
+neg
+return
+label IF_FALSE8
+push this 6
+push constant 0
+eq
+if-goto IF_TRUE9
+goto IF_FALSE9
+label IF_TRUE9
+push constant 1
+return
+label IF_FALSE9
 push constant 1
 neg
 return

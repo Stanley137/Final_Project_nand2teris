@@ -594,7 +594,7 @@ class Game {
         var int e_row;
         var int e_col;
         // do Output.printString("AAAAAA");
-        while(true){
+        while((current_enemy > 0) & (jet.get_hp() > 0)){  // we have enemys, and jet still alive
             // do jet_control();
             //do Output.printInt(current_enemy);
             // hit (jet&enemy) & enemy fire
@@ -643,6 +643,7 @@ class Game {
                     if(e_hit_wall = -1){
                         do jet.damage();
                         do enemy.dead();
+                        do enemy.clean_hp(); // set enemy hp = 0
                         // do Output.printString("Hit wall");
                         let current_enemy = current_enemy - 1;
                     }
@@ -650,6 +651,12 @@ class Game {
                 let e_index = e_index + 1;
             }
             do draw_hp_bar(235, 5, jet.get_hp());
+        }
+        if((jet.get_hp() = 0)){
+            return -1;
+        }
+        if(current_enemy = 0){
+            return 1;
         }
         return -1;
     }
