@@ -156,7 +156,7 @@ class Enemy {
         while(b_index < num_bullets){ // find a non-existing bullet
             let bullet = bullets[b_index];
             let bullet_status = bullet.get_status();
-            if(hit = -1){ // not shot yet
+            if(hit = -1 & ~(row = -1 & col = -1)){ // not shot yet and the enemy is still alive
                 do bullet.set_row(row - 1);
                 do bullet.set_col(col - 8 - 11);
                 do bullet.set_status(true);
@@ -550,7 +550,6 @@ class Enemy {
     method int move(){
         let location = cal_location(row, col);
         if((trans_col_f(col) - 16) < 0){
-            do clear(location);
             return -1;
         }
         do draw0(location);
