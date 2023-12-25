@@ -36,27 +36,24 @@ class Game {
     }
     method int run () {
         var char key;
+        var int e_hit_wall;
         var int e_hit;
         var int j_hit;
         var int e_index;
         var int e_row;
         var int e_col;
-        do Output.printInt(current_enemy);
+        do Output.printString("AAAAAA");
         while(true){
+            do Output.printInt(current_enemy);
             do jet.fire(false); // jet fire
-            // enemy fire
-            let e_index = 0;
-            while(e_index < num_enemy){
-                let enemy = enemys[e_index];
-                do enemy.fire();
-                let e_index = e_index + 1;
-            }
             // hit jet enemy
             let e_index = 0;
             while(e_index < num_enemy){
                 let enemy = enemys[e_index];
                 let e_row = enemy.get_row();
                 let e_col = enemy.get_col();
+                // enemy fire
+                do enemy.fire();
                 // jet hit
                 let j_hit = enemy.hit_jet(jet.get_row(), jet.get_col());
                 if(j_hit = 1){
@@ -100,8 +97,8 @@ class Game {
             let e_index = 0;
             while(e_index < num_enemy){
                 let enemy = enemys[e_index];
-                let e_hit = enemy.move();
-                if(e_hit = -1){
+                let e_hit_wall = enemy.move();
+                if(e_hit_wall = -1){
                     do jet.damage();
                     do enemy.dead();
                     let current_enemy = current_enemy - 1;

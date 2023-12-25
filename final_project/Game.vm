@@ -67,53 +67,46 @@ call Game.draw_hp_bar 4
 pop temp 0
 push constant 0
 return
-function Game.run 6
+function Game.run 7
 push argument 0
 pop pointer 0
-push this 5
-call Output.printInt 1
+push constant 6
+call String.new 1
+push constant 65
+call String.appendChar 2
+push constant 65
+call String.appendChar 2
+push constant 65
+call String.appendChar 2
+push constant 65
+call String.appendChar 2
+push constant 65
+call String.appendChar 2
+push constant 65
+call String.appendChar 2
+call Output.printString 1
 pop temp 0
 label WHILE_EXP0
 push constant 0
 not
 not
 if-goto WHILE_END0
+push this 5
+call Output.printInt 1
+pop temp 0
 push this 0
 push constant 0
 call Jet.fire 2
 pop temp 0
 push constant 0
-pop local 3
+pop local 4
 label WHILE_EXP1
-push local 3
+push local 4
 push this 4
 lt
 not
 if-goto WHILE_END1
-push local 3
-push this 3
-add
-pop pointer 1
-push that 0
-pop this 2
-push this 2
-call Enemy.fire 1
-pop temp 0
-push local 3
-push constant 1
-add
-pop local 3
-goto WHILE_EXP1
-label WHILE_END1
-push constant 0
-pop local 3
-label WHILE_EXP2
-push local 3
-push this 4
-lt
-not
-if-goto WHILE_END2
-push local 3
+push local 4
 push this 3
 add
 pop pointer 1
@@ -121,18 +114,21 @@ push that 0
 pop this 2
 push this 2
 call Enemy.get_row 1
-pop local 4
+pop local 5
 push this 2
 call Enemy.get_col 1
-pop local 5
+pop local 6
+push this 2
+call Enemy.fire 1
+pop temp 0
 push this 2
 push this 0
 call Jet.get_row 1
 push this 0
 call Jet.get_col 1
 call Enemy.hit_jet 3
-pop local 2
-push local 2
+pop local 3
+push local 3
 push constant 1
 eq
 if-goto IF_TRUE0
@@ -154,11 +150,11 @@ neg
 return
 label IF_FALSE1
 push this 0
-push local 4
 push local 5
+push local 6
 call Jet.hit_enemy 3
-pop local 1
-push local 1
+pop local 2
+push local 2
 push constant 1
 eq
 if-goto IF_TRUE2
@@ -192,12 +188,12 @@ label IF_TRUE4
 push constant 1
 return
 label IF_FALSE4
-push local 3
+push local 4
 push constant 1
 add
-pop local 3
-goto WHILE_EXP2
-label WHILE_END2
+pop local 4
+goto WHILE_EXP1
+label WHILE_END1
 call Keyboard.keyPressed 0
 pop local 0
 push local 0
@@ -253,14 +249,14 @@ call Jet.fire 2
 pop temp 0
 label IF_FALSE9
 push constant 0
-pop local 3
-label WHILE_EXP3
-push local 3
+pop local 4
+label WHILE_EXP2
+push local 4
 push this 4
 lt
 not
-if-goto WHILE_END3
-push local 3
+if-goto WHILE_END2
+push local 4
 push this 3
 add
 pop pointer 1
@@ -287,12 +283,12 @@ push constant 1
 sub
 pop this 5
 label IF_FALSE10
-push local 3
+push local 4
 push constant 1
 add
-pop local 3
-goto WHILE_EXP3
-label WHILE_END3
+pop local 4
+goto WHILE_EXP2
+label WHILE_END2
 push pointer 0
 push constant 235
 push constant 5

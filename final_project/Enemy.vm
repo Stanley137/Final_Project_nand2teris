@@ -2202,7 +2202,7 @@ return
 function Enemy.move 1
 push argument 0
 pop pointer 0
-push constant 3
+push constant 1
 pop local 0
 push pointer 0
 push this 0

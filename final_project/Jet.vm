@@ -115,7 +115,7 @@ push argument 1
 push local 0
 sub
 call Math.abs 1
-push constant 15
+push constant 25
 lt
 and
 if-goto IF_TRUE1
@@ -5430,7 +5430,7 @@ return
 function Jet.move_right 1
 push argument 0
 pop pointer 0
-push constant 3
+push constant 1
 pop local 0
 push pointer 0
 push this 1
@@ -5531,7 +5531,7 @@ return
 function Jet.move_left 1
 push argument 0
 pop pointer 0
-push constant 3
+push constant 1
 pop local 0
 push pointer 0
 push this 1
@@ -5632,7 +5632,7 @@ return
 function Jet.move_up 1
 push argument 0
 pop pointer 0
-push constant 3
+push constant 1
 pop local 0
 push pointer 0
 push this 1
@@ -5703,7 +5703,7 @@ return
 function Jet.move_down 1
 push argument 0
 pop pointer 0
-push constant 3
+push constant 1
 pop local 0
 push pointer 0
 push this 1

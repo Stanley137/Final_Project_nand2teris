@@ -54,7 +54,7 @@ class Jet{
         let b_row = bullet.get_row();
         let b_col = bullet.get_col();
         // the length of enemy's wing, 19
-        if((Math.abs(b_col -e_col) < 10) & (Math.abs(e_row - b_row) < 15)){
+        if((Math.abs(b_col -e_col) < 10) & (Math.abs(e_row - b_row) < 25)){
             do bullet.clear(((b_row - 3)*32)+((b_col - 11)/16));
             let hit = -1;
             return 1;
@@ -1065,7 +1065,7 @@ class Jet{
     }
     method void move_right (){
         var int waitTime;
-        let waitTime = 3;
+        let waitTime = 1;
         let trans_row = trans_row_2jet(row);
         let trans_col = trans_col_2jet(col);
         if((trans_col + 16) > 511){
@@ -1095,7 +1095,7 @@ class Jet{
     }
     method void move_left(){
         var int waitTime;
-        let waitTime = 3;
+        let waitTime = 1;
         let trans_row = trans_row_2jet(row);
         let trans_col = trans_col_2jet(col);
         let location = (32*trans_row) + (trans_col/16);
@@ -1125,7 +1125,7 @@ class Jet{
     }
     method void move_up(){
         var int waitTime;
-        let waitTime = 3;
+        let waitTime = 1;
         let trans_row = trans_row_2jet(row);
         let trans_col = trans_col_2jet(col);
         if((trans_row-16) < 0){
@@ -1144,7 +1144,7 @@ class Jet{
     }
     method void move_down(){
         var int waitTime;
-        let waitTime = 3;
+        let waitTime = 1;
         let trans_row = trans_row_2jet(row);
         let trans_col = trans_col_2jet(col);
         if((trans_row + 50) > 255){

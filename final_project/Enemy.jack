@@ -550,7 +550,7 @@ class Enemy {
     }
     method int move(){
         var int waitTime;
-        let waitTime = 3;
+        let waitTime = 1;
         let location = cal_location(row, col);
         if((trans_col_f(col) - 16) < 0){
             return -1;
