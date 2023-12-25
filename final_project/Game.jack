@@ -2,15 +2,19 @@ class Game {
     // attributes and methods
     field Jet jet; // our flight
     field Map map; // map(building、enemy)
+    field Enemy enemy;
     field Array enemys;
-    
+    field int num_enemy;
+    field int init_hp;
     constructor Game new(){
         return this;
     }
-    method void init(int level,int jet_hp,int num_enemy,int enemy_hp){ 
+    method void init(int level,int jet_hp,int num_e,int enemy_hp){ 
         var int i;
         var int step;
         var int len;
+        let init_hp = jet_hp;
+        let num_enemy = num_e;
         let jet = Jet.new(128, 30, jet_hp); // center of the jet
         let len = 256 / (num_enemy + 1); // the distance between enemy
         // init the map????
@@ -28,13 +32,86 @@ class Game {
         do draw_hp_bar(235, 5, jet.get_hp());
         return;
     }
-    method void run () {
+    method int run () {
         var char key;
-        return;
+        var int e_hit;
+        var int j_hit;
+        var int current_enemy;
+        var int e_index;
+        var int e_row;
+        var int e_col;
+        let current_enemy = num_enemy;
+        while(true){
+            do jet.fire(); // jet fire
+            // enemy fire
+            let e_index = 0;
+            while(e_index < num_enemy){
+                let enemy = enemys[e_index];
+                do enemy.fire();
+                let e_index = e_index + 1;
+            }
+            // hit jet enemy
+            let e_index = 0;
+            while(e_index < num_enemy){
+                let enemy = enemys[e_index];
+                let e_row = enemy.get_row();
+                let e_col = enemy.get_col();
+                // jet hit
+                let j_hit = enemy.hit_jet(jet.get_row(), jet.get_col());
+                if(j_hit = 1){
+                    do jet.damage();
+                }
+                if((jet.get_hp()) = 0){ // lose
+                    return -1;
+                }
+                // enemy hit
+                let e_hit = jet.hit_enemy(e_row, e_col);
+                if(e_hit = 1){
+                    do enemy.damage();
+                }
+                if((enemy.get_hp()) = 0){
+                    let current_enemy = current_enemy - 1;
+                    do enemy.dead();
+                }
+                if(current_enemy = 0){ // win
+                    return 1;
+                }
+                let e_index = e_index + 1;
+            }
+            // jet move
+            let key = Keyboard.keyPressed();
+            if(key = 87){ // W, move up
+                do jet.move_up();
+            } 
+            if(key = 65){ // A, move left
+                do jet.move_left();
+            }
+            if(key = 83){ // S, move down
+                do jet.move_down();
+            }
+            if(key = 68){ // D, move right
+                do jet.move_right();
+            }
+            // enemy move
+            let e_index = 0;
+            while(e_index < num_enemy){
+                let enemy = enemys[e_index];
+                let e_hit = enemy.move();
+                if(e_hit = -1){
+                    do jet.damage();
+                    do enemy.dead();
+                    let current_enemy = current_enemy - 1;
+                }
+                let e_index = e_index + 1;
+            }
+            do draw_hp_bar(235, 5, jet.get_hp());
+        }
+        return -1;
     }
     method void over(){
         // clean all memory and data
         // draw some pictures
+        do Output.printString("Game over");
         return;
     }
     method void draw_hp_square(int location) {
@@ -57,6 +134,28 @@ class Game {
         do Memory.poke(memAddress +416, 16383);
         do Memory.poke(memAddress +448, 16383);
         do Memory.poke(memAddress +480, 16383);
+        return;
+    }
+    method void draw_hp_blank(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        do Memory.poke(memAddress, 0);
+        do Memory.poke(memAddress +32, 0);
+        do Memory.poke(memAddress +64, 0);
+        do Memory.poke(memAddress +96, 0);
+        do Memory.poke(memAddress +128, 0);
+        do Memory.poke(memAddress +160, 0);
+        do Memory.poke(memAddress +192, 0);
+        do Memory.poke(memAddress +224, 0);
+        do Memory.poke(memAddress +256, 0);
+        do Memory.poke(memAddress +288, 0);
+        do Memory.poke(memAddress +320, 0);
+        do Memory.poke(memAddress +352, 0);
+        do Memory.poke(memAddress +384, 0);
+        do Memory.poke(memAddress +416, 0);
+        do Memory.poke(memAddress +448, 0);
+        do Memory.poke(memAddress +480, 0);
         return;
     }
 
@@ -70,39 +169,8 @@ class Game {
             let location = location + 1;
             let i = i + 1;
         }
-        return;
-    }
-
-    method void draw_hp_square(int location) {
-        var int memAddress; 
-        let memAddress = 16384+location;
-        // column 0
-        do Memory.poke(memAddress, 16383);
-        do Memory.poke(memAddress +32, 16383);
-        do Memory.poke(memAddress +64, 16383);
-        do Memory.poke(memAddress +96, 16383);
-        do Memory.poke(memAddress +128, 16383);
-        do Memory.poke(memAddress +160, 16383);
-        do Memory.poke(memAddress +192, 16383);
-        do Memory.poke(memAddress +224, 16383);
-        do Memory.poke(memAddress +256, 16383);
-        do Memory.poke(memAddress +288, 16383);
-        do Memory.poke(memAddress +320, 16383);
-        do Memory.poke(memAddress +352, 16383);
-        do Memory.poke(memAddress +384, 16383);
-        do Memory.poke(memAddress +416, 16383);
-        do Memory.poke(memAddress +448, 16383);
-        do Memory.poke(memAddress +480, 16383);
-        return;
-    }
-
-    method void draw_hp_bar(int row, int col, int hp){ // leftest position : (235, 5) (row, col)
-        var int i;
-        var int location;
-        let i = 0;
-        let location = (row*32) + (col/16);
-        while(i < hp){
-            do draw_hp_square(location);
+        while(i < init_hp){
+            do draw_hp_blank(location);
             let location = location + 1;
             let i = i + 1;
         }
