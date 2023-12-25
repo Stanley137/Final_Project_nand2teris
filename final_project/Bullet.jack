@@ -434,7 +434,7 @@ class Bullet {
 
     method int move_right (){
         var int location;
-        let waitTime = 3; // 1000(msec) / 45(Hz)
+        let waitTime = 1; // 1000(msec) / 45(Hz)
         let trans_row = trans_row_2bullet(row);
         let trans_col = trans_col_2bullet(col);
         let location = cal_location(row, col);
@@ -799,7 +799,7 @@ class Bullet {
 
     method int move_left(){
         var int location;
-        let waitTime = 3; // 1000(msec) / 45(Hz)
+        let waitTime = 1; // 1000(msec) / 45(Hz)
         let trans_row = trans_row_2enemy_bullet(row);
         let trans_col = trans_col_2enemy_bullet(col);
         let location = cal_location(row, col);

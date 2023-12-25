@@ -42,7 +42,7 @@ class Game {
         var int e_col;
         let current_enemy = num_enemy;
         while(true){
-            do jet.fire(); // jet fire
+            do jet.fire(false); // jet fire
             // enemy fire
             let e_index = 0;
             while(e_index < num_enemy){
@@ -91,6 +91,9 @@ class Game {
             }
             if(key = 68){ // D, move right
                 do jet.move_right();
+            }
+            if(key = 74){ // J, fire
+                do jet.fire(true;);
             }
             // enemy move
             let e_index = 0;

@@ -9,6 +9,7 @@ class Main {
         if(result = -1){
             do game.over();
         }
+        do Output.printInt(result);
         return;
     }
 }
