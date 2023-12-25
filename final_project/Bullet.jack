@@ -1,3 +1,1025 @@
 class Bullet {
+    field int row;
+    field int col;
+    field int v; //positive : right ; negative : left
+    field int frame;
+
+    field int trans_row;
+    field int trans_col;
+
+    field bool status;
+
+    field int waitTime;
+
+    constructor Bullet new(int r,int c,int vel){
+        let row = r;
+        let col = c;
+        let v = vel;
+        let status = false;
+        let frame = 0;
+        // if(v > 0){
+        //     do draw0(((trans_row_2bullet(row))*32)+((trans_col_2bullet(col))/16)); // 32 * 30 + 15/16
+        // }
+        // else{
+        //     do draw_enemy0(((trans_row_2enemy_bullet(row))*32)+((trans_col_2enemy_bullet(col))/16)); // 32 * 30 + 15/16
+        // }
+        return this;
+    }
     
+    method int get_row(){
+        return row;
+    }
+    method int get_col(){
+        return col;
+    }
+    method bool get_status(){
+        return status;
+    }
+    method int get_frame(){
+        return frame;
+    }
+    method void set_row(int r){
+        let row = r;
+        return;
+    }
+    method void set_col(int c){
+        let col = c;
+        return;
+    }
+    method void set_status(bool sta){
+        let status = sta;
+        return;
+    }
+
+    method int trans_row_2bullet(int row){
+        return (row-3);
+    }
+    method int trans_col_2bullet(int col){
+        return (col-11);
+    }
+    method int trans_row_2enemy_bullet(int row){
+        return (row-3);
+    }
+    method int trans_col_2enemy_bullet(int col){
+        return (col-0);
+    }
+
+    method int cal_location(int row, int col){
+        if(v > 0){
+            let trans_row = row - 3;
+            let trans_col = col - 11;
+        }
+        else{
+            let trans_row = row - 3;
+            let trans_col = col - 0;
+        }
+        return((trans_row*32)+(trans_col/16));
+    }
+
+// deaw0 ~ draw16 are for the bullets of the jet   
+    method void draw0(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        do Memory.poke(memAddress, 15);
+        do Memory.poke(memAddress +32, 127);
+        do Memory.poke(memAddress +64, 2046);
+        do Memory.poke(memAddress +96, 2046);
+        do Memory.poke(memAddress +128, 2046);
+        do Memory.poke(memAddress +160, 2046);
+        do Memory.poke(memAddress +192, 127);
+        do Memory.poke(memAddress +224, 15);
+        return;
+    }
+    method void draw1(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        do Memory.poke(memAddress, 30);
+        do Memory.poke(memAddress +32, 254);
+        do Memory.poke(memAddress +64, 4092);
+        do Memory.poke(memAddress +96, 4092);
+        do Memory.poke(memAddress +128, 4092);
+        do Memory.poke(memAddress +160, 4092);
+        do Memory.poke(memAddress +192, 254);
+        do Memory.poke(memAddress +224, 30);
+        return;
+    }
+    method void draw2(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        do Memory.poke(memAddress, 60);
+        do Memory.poke(memAddress +32, 508);
+        do Memory.poke(memAddress +64, 8184);
+        do Memory.poke(memAddress +96, 8184);
+        do Memory.poke(memAddress +128, 8184);
+        do Memory.poke(memAddress +160, 8184);
+        do Memory.poke(memAddress +192, 508);
+        do Memory.poke(memAddress +224, 60);
+        return;
+    }
+    method void draw3(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        do Memory.poke(memAddress, 120);
+        do Memory.poke(memAddress +32, 1016);
+        do Memory.poke(memAddress +64, 16368);
+        do Memory.poke(memAddress +96, 16368);
+        do Memory.poke(memAddress +128, 16368);
+        do Memory.poke(memAddress +160, 16368);
+        do Memory.poke(memAddress +192, 1016);
+        do Memory.poke(memAddress +224, 120);
+        return;
+    }
+    method void draw4(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        do Memory.poke(memAddress, 240);
+        do Memory.poke(memAddress +32, 2032);
+        do Memory.poke(memAddress +64, 32736);
+        do Memory.poke(memAddress +96, 32736);
+        do Memory.poke(memAddress +128, 32736);
+        do Memory.poke(memAddress +160, 32736);
+        do Memory.poke(memAddress +192, 2032);
+        do Memory.poke(memAddress +224, 240);
+        return;
+    }
+    method void draw5(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        do Memory.poke(memAddress, 480);
+        do Memory.poke(memAddress +32, 4064);
+        do Memory.poke(memAddress +64, -64);
+        do Memory.poke(memAddress +96, -64);
+        do Memory.poke(memAddress +128, -64);
+        do Memory.poke(memAddress +160, -64);
+        do Memory.poke(memAddress +192, 4064);
+        do Memory.poke(memAddress +224, 480);
+        return;
+    }
+    method void draw6(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        do Memory.poke(memAddress, 960);
+        do Memory.poke(memAddress +32, 8128);
+        do Memory.poke(memAddress +64, -128);
+        do Memory.poke(memAddress +96, -128);
+        do Memory.poke(memAddress +128, -128);
+        do Memory.poke(memAddress +160, -128);
+        do Memory.poke(memAddress +192, 8128);
+        do Memory.poke(memAddress +224, 960);
+        // column 1
+        do Memory.poke(memAddress +65, 1);
+        do Memory.poke(memAddress +97, 1);
+        do Memory.poke(memAddress +129, 1);
+        do Memory.poke(memAddress +161, 1);
+        return;
+    }
+    method void draw7(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        do Memory.poke(memAddress, 1920);
+        do Memory.poke(memAddress +32, 16256);
+        do Memory.poke(memAddress +64, -256);
+        do Memory.poke(memAddress +96, -256);
+        do Memory.poke(memAddress +128, -256);
+        do Memory.poke(memAddress +160, -256);
+        do Memory.poke(memAddress +192, 16256);
+        do Memory.poke(memAddress +224, 1920);
+        // column 1
+        do Memory.poke(memAddress +65, 3);
+        do Memory.poke(memAddress +97, 3);
+        do Memory.poke(memAddress +129, 3);
+        do Memory.poke(memAddress +161, 3);
+        return;
+    }
+    method void draw8(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        do Memory.poke(memAddress, 3840);
+        do Memory.poke(memAddress +32, 32512);
+        do Memory.poke(memAddress +64, -512);
+        do Memory.poke(memAddress +96, -512);
+        do Memory.poke(memAddress +128, -512);
+        do Memory.poke(memAddress +160, -512);
+        do Memory.poke(memAddress +192, 32512);
+        do Memory.poke(memAddress +224, 3840);
+        // column 1
+        do Memory.poke(memAddress +65, 7);
+        do Memory.poke(memAddress +97, 7);
+        do Memory.poke(memAddress +129, 7);
+        do Memory.poke(memAddress +161, 7);
+        return;
+    }   
+    method void draw9(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        do Memory.poke(memAddress, 7680);
+        do Memory.poke(memAddress +32, -512);
+        do Memory.poke(memAddress +64, -1024);
+        do Memory.poke(memAddress +96, -1024);
+        do Memory.poke(memAddress +128, -1024);
+        do Memory.poke(memAddress +160, -1024);
+        do Memory.poke(memAddress +192, -512);
+        do Memory.poke(memAddress +224, 7680);
+        // column 1
+        do Memory.poke(memAddress +65, 15);
+        do Memory.poke(memAddress +97, 15);
+        do Memory.poke(memAddress +129, 15);
+        do Memory.poke(memAddress +161, 15);
+        return;
+    }
+    method void draw10(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        do Memory.poke(memAddress, 15360);
+        do Memory.poke(memAddress +32, -1024);
+        do Memory.poke(memAddress +64, -2048);
+        do Memory.poke(memAddress +96, -2048);
+        do Memory.poke(memAddress +128, -2048);
+        do Memory.poke(memAddress +160, -2048);
+        do Memory.poke(memAddress +192, -1024);
+        do Memory.poke(memAddress +224, 15360);
+        // column 1
+        do Memory.poke(memAddress +33, 1);
+        do Memory.poke(memAddress +65, 31);
+        do Memory.poke(memAddress +97, 31);
+        do Memory.poke(memAddress +129, 31);
+        do Memory.poke(memAddress +161, 31);
+        do Memory.poke(memAddress +193, 1);
+        return;
+    }
+    method void draw11(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        do Memory.poke(memAddress, 30720);
+        do Memory.poke(memAddress +32, -2048);
+        do Memory.poke(memAddress +64, -4096);
+        do Memory.poke(memAddress +96, -4096);
+        do Memory.poke(memAddress +128, -4096);
+        do Memory.poke(memAddress +160, -4096);
+        do Memory.poke(memAddress +192, -2048);
+        do Memory.poke(memAddress +224, 30720);
+        // column 1
+        do Memory.poke(memAddress +33, 3);
+        do Memory.poke(memAddress +65, 63);
+        do Memory.poke(memAddress +97, 63);
+        do Memory.poke(memAddress +129, 63);
+        do Memory.poke(memAddress +161, 63);
+        do Memory.poke(memAddress +193, 3);
+        return;
+    }
+    method void draw12(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        do Memory.poke(memAddress, -4096);
+        do Memory.poke(memAddress +32, -4096);
+        do Memory.poke(memAddress +64, -8192);
+        do Memory.poke(memAddress +96, -8192);
+        do Memory.poke(memAddress +128, -8192);
+        do Memory.poke(memAddress +160, -8192);
+        do Memory.poke(memAddress +192, -4096);
+        do Memory.poke(memAddress +224, -4096);
+        // column 1
+        do Memory.poke(memAddress +33, 7);
+        do Memory.poke(memAddress +65, 127);
+        do Memory.poke(memAddress +97, 127);
+        do Memory.poke(memAddress +129, 127);
+        do Memory.poke(memAddress +161, 127);
+        do Memory.poke(memAddress +193, 7);
+        return;
+    }
+    method void draw13(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        do Memory.poke(memAddress, -8192);
+        do Memory.poke(memAddress +32, -8192);
+        do Memory.poke(memAddress +64, -16384);
+        do Memory.poke(memAddress +96, -16384);
+        do Memory.poke(memAddress +128, -16384);
+        do Memory.poke(memAddress +160, -16384);
+        do Memory.poke(memAddress +192, -8192);
+        do Memory.poke(memAddress +224, -8192);
+        // column 1
+        do Memory.poke(memAddress +1, 1);
+        do Memory.poke(memAddress +33, 15);
+        do Memory.poke(memAddress +65, 255);
+        do Memory.poke(memAddress +97, 255);
+        do Memory.poke(memAddress +129, 255);
+        do Memory.poke(memAddress +161, 255);
+        do Memory.poke(memAddress +193, 15);
+        do Memory.poke(memAddress +225, 1);
+        return;
+    } 
+    method void draw14(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        do Memory.poke(memAddress, -16384);
+        do Memory.poke(memAddress +32, -16384);
+        do Memory.poke(memAddress +64, ~32767);
+        do Memory.poke(memAddress +96, ~32767);
+        do Memory.poke(memAddress +128, ~32767);
+        do Memory.poke(memAddress +160, ~32767);
+        do Memory.poke(memAddress +192, -16384);
+        do Memory.poke(memAddress +224, -16384);
+        // column 1
+        do Memory.poke(memAddress +1, 3);
+        do Memory.poke(memAddress +33, 31);
+        do Memory.poke(memAddress +65, 511);
+        do Memory.poke(memAddress +97, 511);
+        do Memory.poke(memAddress +129, 511);
+        do Memory.poke(memAddress +161, 511);
+        do Memory.poke(memAddress +193, 31);
+        do Memory.poke(memAddress +225, 3);
+        return;
+    }
+    method void draw15(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        do Memory.poke(memAddress, ~32767);
+        do Memory.poke(memAddress +32, ~32767);
+        do Memory.poke(memAddress +64, 0);
+        do Memory.poke(memAddress +96, 0);
+        do Memory.poke(memAddress +128, 0);
+        do Memory.poke(memAddress +160, 0);
+        do Memory.poke(memAddress +192, ~32767);
+        do Memory.poke(memAddress +224, ~32767);
+        // column 1
+        do Memory.poke(memAddress +1, 7);
+        do Memory.poke(memAddress +33, 63);
+        do Memory.poke(memAddress +65, 1023);
+        do Memory.poke(memAddress +97, 1023);
+        do Memory.poke(memAddress +129, 1023);
+        do Memory.poke(memAddress +161, 1023);
+        do Memory.poke(memAddress +193, 63);
+        do Memory.poke(memAddress +225, 7);
+        return;
+    }
+    method void draw16(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        do Memory.poke(memAddress, 0);
+        do Memory.poke(memAddress +32, 0);
+        do Memory.poke(memAddress +192, 0);
+        do Memory.poke(memAddress +224, 0);
+        // column 1
+        do Memory.poke(memAddress +1, 15);
+        do Memory.poke(memAddress +33, 127);
+        do Memory.poke(memAddress +65, 2046);
+        do Memory.poke(memAddress +97, 2046);
+        do Memory.poke(memAddress +129, 2046);
+        do Memory.poke(memAddress +161, 2046);
+        do Memory.poke(memAddress +193, 127);
+        do Memory.poke(memAddress +225, 15);
+        return;
+    }
+// clear functions
+    method void draw_clear(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        do Memory.poke(memAddress, 0);
+        do Memory.poke(memAddress +32, 0);
+        do Memory.poke(memAddress +64, 0);
+        do Memory.poke(memAddress +96, 0);
+        do Memory.poke(memAddress +128, 0);
+        do Memory.poke(memAddress +160, 0);
+        do Memory.poke(memAddress +192, 0);
+        do Memory.poke(memAddress +224, 0);
+        return;
+    }
+    method void draw_enemy_clear(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        do Memory.poke(memAddress, 0);
+        do Memory.poke(memAddress +32, 0);
+        do Memory.poke(memAddress +64, 0);
+        do Memory.poke(memAddress +96, 0);
+        do Memory.poke(memAddress +128, 0);
+        do Memory.poke(memAddress +160, 0);
+        do Memory.poke(memAddress +192, 0);
+        do Memory.poke(memAddress +224, 0);
+        return;
+    }
+    method void clear(int location){
+        if(v > 0){
+            do draw_clear(location);
+        }
+        else{
+            do draw_enemy_clear(location);
+        }
+        let row = -1;
+        let col = -1;
+        let status = false;
+        //do Output.printString("cleared");
+        return;
+    }
+// move right for bullets of the jet
+    method int move_right (){
+        var int location;
+        let waitTime = 3; // 1000(msec) / 45(Hz)
+        let trans_row = trans_row_2bullet(row);
+        let trans_col = trans_col_2bullet(col);
+        let location = cal_location(row, col);
+        if((trans_col + 16) > 511){ // out of bound -> clear it
+            do clear(location);
+            return -1;
+        }
+        do draw0(location);
+        do Sys.wait(waitTime);
+        do draw1(location);
+        do Sys.wait(waitTime);
+        do draw2(location);
+        do Sys.wait(waitTime);
+        do draw3(location);
+        do Sys.wait(waitTime);
+        do draw4(location);
+        do Sys.wait(waitTime);
+        do draw5(location);
+        do Sys.wait(waitTime);
+        do draw6(location);
+        do Sys.wait(waitTime);
+        do draw7(location);
+        do Sys.wait(waitTime);
+        do draw8(location);
+        do Sys.wait(waitTime);
+        do draw9(location);
+        do Sys.wait(waitTime);
+        do draw9(location);
+        do Sys.wait(waitTime);
+        do draw10(location);
+        do Sys.wait(waitTime);
+        do draw11(location);
+        do Sys.wait(waitTime);
+        do draw12(location);
+        do Sys.wait(waitTime);
+        do draw13(location);
+        do Sys.wait(waitTime);
+        do draw14(location);
+        do Sys.wait(waitTime);
+        do draw15(location);
+        do Sys.wait(waitTime);
+        do draw16(location);
+        do Sys.wait(waitTime);
+        let col = col + 16;
+        return 1;
+    }
+// draw_enemy0 ~ draw_enemy16 are for bullets of enemies
+    method void draw_enemy0(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        do Memory.poke(memAddress, 1920);
+        do Memory.poke(memAddress +32, 1008);
+        do Memory.poke(memAddress +64, 1023);
+        do Memory.poke(memAddress +96, 1023);
+        do Memory.poke(memAddress +128, 1023);
+        do Memory.poke(memAddress +160, 1023);
+        do Memory.poke(memAddress +192, 1008);
+        do Memory.poke(memAddress +224, 1920);
+        return;
+    }
+    method void draw_enemy1(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        do Memory.poke(memAddress, 960);
+        do Memory.poke(memAddress +32, 504);
+        do Memory.poke(memAddress +64, 511);
+        do Memory.poke(memAddress +96, 511);
+        do Memory.poke(memAddress +128, 511);
+        do Memory.poke(memAddress +160, 511);
+        do Memory.poke(memAddress +192, 504);
+        do Memory.poke(memAddress +224, 960);
+        // column -1
+        do Memory.poke(memAddress +63, ~32767);
+        do Memory.poke(memAddress +95, ~32767);
+        do Memory.poke(memAddress +127, ~32767);
+        do Memory.poke(memAddress +159, ~32767);
+        return;
+    }
+    method void draw_enemy2(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        do Memory.poke(memAddress, 480);
+        do Memory.poke(memAddress +32, 252);
+        do Memory.poke(memAddress +64, 255);
+        do Memory.poke(memAddress +96, 255);
+        do Memory.poke(memAddress +128, 255);
+        do Memory.poke(memAddress +160, 255);
+        do Memory.poke(memAddress +192, 252);
+        do Memory.poke(memAddress +224, 480);
+        // column -1
+        do Memory.poke(memAddress +63, -16384);
+        do Memory.poke(memAddress +95, -16384);
+        do Memory.poke(memAddress +127, -16384);
+        do Memory.poke(memAddress +159, -16384);
+        return;
+    }
+    method void draw_enemy3(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        do Memory.poke(memAddress, 240);
+        do Memory.poke(memAddress +32, 126);
+        do Memory.poke(memAddress +64, 127);
+        do Memory.poke(memAddress +96, 127);
+        do Memory.poke(memAddress +128, 127);
+        do Memory.poke(memAddress +160, 127);
+        do Memory.poke(memAddress +192, 126);
+        do Memory.poke(memAddress +224, 240);
+        // column -1
+        do Memory.poke(memAddress +63, -8192);
+        do Memory.poke(memAddress +95, -8192);
+        do Memory.poke(memAddress +127, -8192);
+        do Memory.poke(memAddress +159, -8192);
+        return;
+    }
+    method void draw_enemy4(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        do Memory.poke(memAddress, 120);
+        do Memory.poke(memAddress +32, 63);
+        do Memory.poke(memAddress +64, 63);
+        do Memory.poke(memAddress +96, 63);
+        do Memory.poke(memAddress +128, 63);
+        do Memory.poke(memAddress +160, 63);
+        do Memory.poke(memAddress +192, 63);
+        do Memory.poke(memAddress +224, 120);
+        // column -1
+        do Memory.poke(memAddress +63, -4096);
+        do Memory.poke(memAddress +95, -4096);
+        do Memory.poke(memAddress +127, -4096);
+        do Memory.poke(memAddress +159, -4096);
+        return;
+    }
+    method void draw_enemy5(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        do Memory.poke(memAddress, 60);
+        do Memory.poke(memAddress +32, 31);
+        do Memory.poke(memAddress +64, 31);
+        do Memory.poke(memAddress +96, 31);
+        do Memory.poke(memAddress +128, 31);
+        do Memory.poke(memAddress +160, 31);
+        do Memory.poke(memAddress +192, 31);
+        do Memory.poke(memAddress +224, 60);
+        // column -1
+        do Memory.poke(memAddress +31, ~32767);
+        do Memory.poke(memAddress +63, -2048);
+        do Memory.poke(memAddress +95, -2048);
+        do Memory.poke(memAddress +127, -2048);
+        do Memory.poke(memAddress +159, -2048);
+        do Memory.poke(memAddress +191, ~32767);
+        return;
+    }
+    method void draw_enemy6(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        do Memory.poke(memAddress, 30);
+        do Memory.poke(memAddress +32, 15);
+        do Memory.poke(memAddress +64, 15);
+        do Memory.poke(memAddress +96, 15);
+        do Memory.poke(memAddress +128, 15);
+        do Memory.poke(memAddress +160, 15);
+        do Memory.poke(memAddress +192, 15);
+        do Memory.poke(memAddress +224, 30);
+        // column -1
+        do Memory.poke(memAddress +31, -16384);
+        do Memory.poke(memAddress +63, -1024);
+        do Memory.poke(memAddress +95, -1024);
+        do Memory.poke(memAddress +127, -1024);
+        do Memory.poke(memAddress +159, -1024);
+        do Memory.poke(memAddress +191, -16384);
+        return;
+    }
+    method void draw_enemy7(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        do Memory.poke(memAddress, 15);
+        do Memory.poke(memAddress +32, 7);
+        do Memory.poke(memAddress +64, 7);
+        do Memory.poke(memAddress +96, 7);
+        do Memory.poke(memAddress +128, 7);
+        do Memory.poke(memAddress +160, 7);
+        do Memory.poke(memAddress +192, 7);
+        do Memory.poke(memAddress +224, 15);
+        // column -1
+        do Memory.poke(memAddress +31, -8192);
+        do Memory.poke(memAddress +63, -512);
+        do Memory.poke(memAddress +95, -512);
+        do Memory.poke(memAddress +127, -512);
+        do Memory.poke(memAddress +159, -512);
+        do Memory.poke(memAddress +191, -8192);
+        return;
+    }
+    method void draw_enemy8(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        do Memory.poke(memAddress, 7);
+        do Memory.poke(memAddress +32, 3);
+        do Memory.poke(memAddress +64, 3);
+        do Memory.poke(memAddress +96, 3);
+        do Memory.poke(memAddress +128, 3);
+        do Memory.poke(memAddress +160, 3);
+        do Memory.poke(memAddress +192, 3);
+        do Memory.poke(memAddress +224, 7);
+        // column -1
+        do Memory.poke(memAddress -1, ~32767);
+        do Memory.poke(memAddress +31, -4096);
+        do Memory.poke(memAddress +63, -256);
+        do Memory.poke(memAddress +95, -256);
+        do Memory.poke(memAddress +127, -256);
+        do Memory.poke(memAddress +159, -256);
+        do Memory.poke(memAddress +191, -4096);
+        do Memory.poke(memAddress +223, ~32767);
+        return;
+    }
+    method void draw_enemy9(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        do Memory.poke(memAddress, 3);
+        do Memory.poke(memAddress +32, 1);
+        do Memory.poke(memAddress +64, 1);
+        do Memory.poke(memAddress +96, 1);
+        do Memory.poke(memAddress +128, 1);
+        do Memory.poke(memAddress +160, 1);
+        do Memory.poke(memAddress +192, 1);
+        do Memory.poke(memAddress +224, 3);
+        // column -1
+        do Memory.poke(memAddress -1, -16384);
+        do Memory.poke(memAddress +31, -2048);
+        do Memory.poke(memAddress +63, -128);
+        do Memory.poke(memAddress +95, -128);
+        do Memory.poke(memAddress +127, -128);
+        do Memory.poke(memAddress +159, -128);
+        do Memory.poke(memAddress +191, -2048);
+        do Memory.poke(memAddress +223, -16384);
+        return;
+    }
+    method void draw_enemy10(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        do Memory.poke(memAddress, 1);
+        do Memory.poke(memAddress +32, 0);
+        do Memory.poke(memAddress +64, 0);
+        do Memory.poke(memAddress +96, 0);
+        do Memory.poke(memAddress +128, 0);
+        do Memory.poke(memAddress +160, 0);
+        do Memory.poke(memAddress +192, 0);
+        do Memory.poke(memAddress +224, 1);
+        // column -1
+        do Memory.poke(memAddress -1, -8192);
+        do Memory.poke(memAddress +31, -1024);
+        do Memory.poke(memAddress +63, -64);
+        do Memory.poke(memAddress +95, -64);
+        do Memory.poke(memAddress +127, -64);
+        do Memory.poke(memAddress +159, -64);
+        do Memory.poke(memAddress +191, -1024);
+        do Memory.poke(memAddress +223, -8192);
+        return;
+    }
+    method void draw_enemy11(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        do Memory.poke(memAddress, 0);
+        do Memory.poke(memAddress +224, 0);
+        // column -1
+        do Memory.poke(memAddress -1, -4096);
+        do Memory.poke(memAddress +31, 32256);
+        do Memory.poke(memAddress +63, 32736);
+        do Memory.poke(memAddress +95, 32736);
+        do Memory.poke(memAddress +127, 32736);
+        do Memory.poke(memAddress +159, 32736);
+        do Memory.poke(memAddress +191, 32256);
+        do Memory.poke(memAddress +223, -4096);
+        return;
+    }
+    method void draw_enemy12(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        // column -1
+        do Memory.poke(memAddress -1, 30720);
+        do Memory.poke(memAddress +31, 16128);
+        do Memory.poke(memAddress +63, 16368);
+        do Memory.poke(memAddress +95, 16368);
+        do Memory.poke(memAddress +127, 16368);
+        do Memory.poke(memAddress +159, 16368);
+        do Memory.poke(memAddress +191, 16128);
+        do Memory.poke(memAddress +223, 30720);
+        return;
+    }
+    method void draw_enemy13(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        // column -1
+        do Memory.poke(memAddress -1, 15360);
+        do Memory.poke(memAddress +31, 8064);
+        do Memory.poke(memAddress +63, 8184);
+        do Memory.poke(memAddress +95, 8184);
+        do Memory.poke(memAddress +127, 8184);
+        do Memory.poke(memAddress +159, 8184);
+        do Memory.poke(memAddress +191, 8064);
+        do Memory.poke(memAddress +223, 15360);
+        return;
+    }
+    method void draw_enemy14(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        // column -1
+        do Memory.poke(memAddress -1, 7680);
+        do Memory.poke(memAddress +31, 4032);
+        do Memory.poke(memAddress +63, 4092);
+        do Memory.poke(memAddress +95, 4092);
+        do Memory.poke(memAddress +127, 4092);
+        do Memory.poke(memAddress +159, 4092);
+        do Memory.poke(memAddress +191, 4032);
+        do Memory.poke(memAddress +223, 7680);
+        return;
+    }
+    method void draw_enemy15(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        // column -1
+        do Memory.poke(memAddress -1, 3840);
+        do Memory.poke(memAddress +31, 2016);
+        do Memory.poke(memAddress +63, 2046);
+        do Memory.poke(memAddress +95, 2046);
+        do Memory.poke(memAddress +127, 2046);
+        do Memory.poke(memAddress +159, 2046);
+        do Memory.poke(memAddress +191, 2016);
+        do Memory.poke(memAddress +223, 3840);
+        return;
+    }
+    method void draw_enemy16(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        // column -1
+        do Memory.poke(memAddress -1, 1920);
+        do Memory.poke(memAddress +31, 1008);
+        do Memory.poke(memAddress +63, 1023);
+        do Memory.poke(memAddress +95, 1023);
+        do Memory.poke(memAddress +127, 1023);
+        do Memory.poke(memAddress +159, 1023);
+        do Memory.poke(memAddress +191, 1008);
+        do Memory.poke(memAddress +223, 1920);
+        return;
+    }
+// several versions of move_left
+    method int move_left(){
+        var int location;
+        let waitTime = 3; // 1000(msec) / 45(Hz)
+        let trans_row = trans_row_2enemy_bullet(row);
+        let trans_col = trans_col_2enemy_bullet(col);
+        let location = cal_location(row, col);
+        if((trans_col - 16) < 0){
+            do clear(location);
+            return -1;
+        }
+
+        do draw_enemy0(location);
+        do Sys.wait(waitTime);
+        do draw_enemy1(location);
+        do Sys.wait(waitTime);
+        do draw_enemy2(location);
+        do Sys.wait(waitTime);
+        do draw_enemy3(location);
+        do Sys.wait(waitTime);
+        do draw_enemy4(location);
+        do Sys.wait(waitTime);
+        do draw_enemy5(location);
+        do Sys.wait(waitTime);
+        do draw_enemy6(location);
+        do Sys.wait(waitTime);
+        do draw_enemy7(location);
+        do Sys.wait(waitTime);
+        do draw_enemy8(location);
+        do Sys.wait(waitTime);
+        do draw_enemy9(location);
+        do Sys.wait(waitTime);
+        do draw_enemy10(location);
+        do Sys.wait(waitTime);
+        do draw_enemy11(location);
+        do Sys.wait(waitTime);
+        do draw_enemy12(location);
+        do Sys.wait(waitTime);
+        do draw_enemy13(location);
+        do Sys.wait(waitTime);
+        do draw_enemy14(location);
+        do Sys.wait(waitTime);
+        do draw_enemy15(location);
+        do Sys.wait(waitTime);
+        do draw_enemy16(location);
+        do Sys.wait(waitTime);
+
+        let col = col - 16;
+        return 1;
+    }
+
+    method int move_left_per_pixel_0(){
+        var int location;
+        let waitTime = 3; // 1000(msec) / 45(Hz)
+        let trans_row = trans_row_2enemy_bullet(row);
+        let trans_col = trans_col_2enemy_bullet(col);
+        let location = cal_location(row, col);
+
+        if((trans_col - 16) < 0){
+            do clear(location);
+            return -1;
+        }
+        
+        if(frame > 17 | frame = 17){
+            let frame = frame - 17; // draw0 ~ draw16
+        }
+
+        if(frame = 0){
+            do draw_enemy0(location);
+            do Sys.wait(waitTime);
+        }
+        if(frame = 1){
+            do draw_enemy1(location);
+            do Sys.wait(waitTime);
+        }
+        if(frame = 2){
+            do draw_enemy2(location);
+            do Sys.wait(waitTime);
+        }
+        if(frame = 3){
+            do draw_enemy3(location);
+            do Sys.wait(waitTime);
+        }
+        if(frame = 4){
+            do draw_enemy4(location);
+            do Sys.wait(waitTime);
+        }
+        if(frame = 5){
+            do draw_enemy5(location);
+            do Sys.wait(waitTime);
+        }
+        if(frame = 6){
+            do draw_enemy6(location);
+            do Sys.wait(waitTime);
+        }
+        if(frame = 7){
+            do draw_enemy7(location);
+            do Sys.wait(waitTime);
+        }
+        if(frame = 8){
+            do draw_enemy8(location);
+            do Sys.wait(waitTime);
+        }
+        if(frame = 9){
+            do draw_enemy9(location);
+            do Sys.wait(waitTime);
+        }
+        if(frame = 10){
+            do draw_enemy10(location);
+            do Sys.wait(waitTime);
+        }
+        if(frame = 11){
+            do draw_enemy11(location);
+            do Sys.wait(waitTime);
+        }
+        if(frame = 12){
+            do draw_enemy12(location);
+            do Sys.wait(waitTime);
+        }
+        if(frame = 13){
+            do draw_enemy13(location);
+            do Sys.wait(waitTime);
+        }
+        if(frame = 14){
+            do draw_enemy14(location);
+            do Sys.wait(waitTime);
+        }
+        if(frame = 15){
+            do draw_enemy15(location);
+            do Sys.wait(waitTime);
+        }
+        if(frame = 16){
+            do draw_enemy16(location);
+            do Sys.wait(waitTime);
+        }
+        let col = col - 1;
+        let frame = frame + 1;
+        return 1;
+    }
+    method int move_left_per_pixel(){
+        var int location;
+        let waitTime = 3; // 1000(msec) / 45(Hz)
+        let trans_row = trans_row_2enemy_bullet(row);
+        let trans_col = trans_col_2enemy_bullet(col);
+        let location = cal_location(row, col);
+
+        if((trans_col - 16) < 0){
+            do clear(location);
+            return -1;
+        }
+
+        if(frame > 34 | frame = 34){
+            let frame = frame - 34; // draw0 ~ draw16
+        }
+
+        if(frame = 0 | frame = 17){
+            do draw_enemy0(location);
+            do Sys.wait(waitTime);
+        }
+        if(frame = 1 | frame = 18){
+            do draw_enemy1(location);
+            do Sys.wait(waitTime);
+        }
+        if(frame = 2 | frame = 19){
+            do draw_enemy2(location);
+            do Sys.wait(waitTime);
+        }
+        if(frame = 3 | frame = 20){
+            do draw_enemy3(location);
+            do Sys.wait(waitTime);
+        }
+        if(frame = 4 | frame = 21){
+            do draw_enemy4(location);
+            do Sys.wait(waitTime);
+        }
+        if(frame = 5 | frame = 22){
+            do draw_enemy5(location);
+            do Sys.wait(waitTime);
+        }
+        if(frame = 6 | frame = 23){
+            do draw_enemy6(location);
+            do Sys.wait(waitTime);
+        }
+        if(frame = 7 | frame = 24){
+            do draw_enemy7(location);
+            do Sys.wait(waitTime);
+        }
+        if(frame = 8 | frame = 25){
+            do draw_enemy8(location);
+            do Sys.wait(waitTime);
+        }
+        if(frame = 9 | frame = 26){
+            do draw_enemy9(location);
+            do Sys.wait(waitTime);
+        }
+        if(frame = 10 | frame = 27){
+            do draw_enemy10(location);
+            do Sys.wait(waitTime);
+        }
+        if(frame = 11 | frame = 28){
+            do draw_enemy11(location);
+            do Sys.wait(waitTime);
+        }
+        if(frame = 12 | frame = 29){
+            do draw_enemy12(location);
+            do Sys.wait(waitTime);
+        }
+        if(frame = 13 | frame = 30){
+            do draw_enemy13(location);
+            do Sys.wait(waitTime);
+        }
+        if(frame = 14 | frame = 31){
+            do draw_enemy14(location);
+            do Sys.wait(waitTime);
+        }
+        if(frame = 15 | frame = 32){
+            do draw_enemy15(location);
+            do Sys.wait(waitTime);
+        }
+        if(frame = 16 | frame = 33){
+            do draw_enemy16(location);
+            do Sys.wait(waitTime);
+            let col = col - 16;
+        }
+        let frame = frame + 1;
+        return 1;
+    }
 }
