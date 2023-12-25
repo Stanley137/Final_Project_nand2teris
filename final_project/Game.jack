@@ -5,6 +5,7 @@ class Game {
     field Enemy enemy;
     field Array enemys;
     field int num_enemy;
+    field int current_enemy;
     field int init_hp;
     constructor Game new(){
         return this;
@@ -15,6 +16,7 @@ class Game {
         var int len;
         let init_hp = jet_hp;
         let num_enemy = num_e;
+        let current_enemy = num_enemy;
         let jet = Jet.new(128, 30, jet_hp); // center of the jet
         let len = 256 / (num_enemy + 1); // the distance between enemy
         // init the map????
@@ -36,11 +38,10 @@ class Game {
         var char key;
         var int e_hit;
         var int j_hit;
-        var int current_enemy;
         var int e_index;
         var int e_row;
         var int e_col;
-        let current_enemy = num_enemy;
+        do Output.printInt(current_enemy);
         while(true){
             do jet.fire(false); // jet fire
             // enemy fire
@@ -93,7 +94,7 @@ class Game {
                 do jet.move_right();
             }
             if(key = 74){ // J, fire
-                do jet.fire(true;);
+                do jet.fire(true);
             }
             // enemy move
             let e_index = 0;

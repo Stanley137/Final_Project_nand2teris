@@ -76,6 +76,21 @@ return
 function Jet.hit_enemy 2
 push argument 0
 pop pointer 0
+push argument 1
+push constant 1
+neg
+eq
+push argument 2
+push constant 1
+neg
+eq
+or
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+return
+label IF_FALSE0
 push constant 0
 pop this 7
 push this 7
@@ -103,9 +118,9 @@ call Math.abs 1
 push constant 15
 lt
 and
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
 push this 13
 push local 0
 push constant 3
@@ -125,7 +140,7 @@ neg
 pop this 6
 push constant 1
 return
-label IF_FALSE0
+label IF_FALSE1
 push constant 0
 return
 function Jet.get_row 0
@@ -138,7 +153,7 @@ push argument 0
 pop pointer 0
 push this 2
 return
-function Jet.fire 0
+function Jet.fire 2
 push argument 0
 pop pointer 0
 push constant 0
@@ -147,6 +162,8 @@ push this 6
 push constant 1
 neg
 eq
+push argument 1
+or
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
@@ -156,6 +173,26 @@ add
 pop pointer 1
 push that 0
 pop this 13
+push this 13
+call Bullet.get_row 1
+pop local 0
+push this 13
+call Bullet.get_col 1
+pop local 1
+push this 13
+push local 0
+push constant 3
+sub
+push constant 32
+call Math.multiply 2
+push local 1
+push constant 11
+sub
+push constant 16
+call Math.divide 2
+add
+call Bullet.draw_clear 2
+pop temp 0
 push this 13
 push this 1
 push constant 2
