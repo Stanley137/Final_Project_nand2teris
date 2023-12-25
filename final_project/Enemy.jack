@@ -544,7 +544,6 @@ class Enemy {
     method int move(){
         let location = cal_location(row, col);
         if((trans_col_f(col) - 16) < 0){
-            do clear(location);
             return -1;
         }
         do draw0(location);
