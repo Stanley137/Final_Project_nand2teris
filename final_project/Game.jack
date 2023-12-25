@@ -44,7 +44,7 @@ class Game {
         var int e_col;
         // do Output.printString("AAAAAA");
         while(true){
-            do jet_control();
+            // do jet_control();
             do Output.printInt(current_enemy);
             // hit (jet&enemy) & enemy fire
             let e_index = 0;
@@ -92,7 +92,7 @@ class Game {
                     if(e_hit_wall = -1){
                         do jet.damage();
                         do enemy.dead();
-                        do Output.printString("Hit wall");
+                        // do Output.printString("Hit wall");
                         let current_enemy = current_enemy - 1;
                     }
                 }
@@ -102,10 +102,17 @@ class Game {
         }
         return -1;
     }
-    method void over(){
+    method void over(int win){
         // clean all memory and data
         // draw some pictures
-        do Output.printString("Game over");
+        do Screen.clearScreen();
+        if(win = -1){
+            do Output.printString("Game over");
+        }
+        else{
+            do Output.printString("Level Up");
+        }
+        do Sys.wait(3000);
         return;
     }
     method void draw_hp_square(int location) {

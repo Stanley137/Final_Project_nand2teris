@@ -337,7 +337,7 @@ sub
 call Math.abs 1
 pop local 4
 push local 4
-push constant 25
+push constant 30
 lt
 push local 5
 push constant 25
