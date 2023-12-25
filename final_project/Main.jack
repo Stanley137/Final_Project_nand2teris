@@ -4,29 +4,19 @@ class Main {
         var int result;
         // level 1
         let game = Game.new(); 
-        do game.start_menu();
         do game.init(1, 3, 1, 1); // (level, jet_hp, num_enemy, enemy_hp)
         let result = game.run();
         do game.over(result);
-        if(result = -1){ // game over
-            return;
-        }
         // level 2
         let game = Game.new();
         do game.init(2, 3, 2, 1);
         let result = game.run();
         do game.over(result);
-        if(result = -1){ // game over
-            return;
-        }
         // level 3
         let game = Game.new();
         do game.init(2, 3, 3, 1);
         let result = game.run();
         do game.over(result);
-        if(result = -1){ // game over
-            return;
-        }
         // do Output.printInt(result);
         return;
     }
