@@ -60,6 +60,11 @@ class Enemy {
     method int get_col(){
         return col;
     }
+    // clean hp
+    method void clean_hp(){
+        let hp = 0;
+        return;
+    }
     // get hp
     method int get_hp(){
         return hp;

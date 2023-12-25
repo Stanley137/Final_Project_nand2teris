@@ -3348,6 +3348,9 @@ pop temp 0
 push this 2
 call Enemy.dead 1
 pop temp 0
+push this 2
+call Enemy.clean_hp 1
+pop temp 0
 push this 5
 push constant 1
 sub
@@ -3416,6 +3419,8 @@ pop temp 0
 push pointer 0
 call Game.print_thanks_list 1
 pop temp 0
+push constant 0
+return
 goto IF_END0
 label IF_FALSE0
 push constant 8
@@ -3451,7 +3456,7 @@ push argument 0
 pop pointer 0
 call Screen.clearScreen 0
 pop temp 0
-push constant 10
+push constant 6
 push constant 20
 call Output.moveCursor 2
 pop temp 0
@@ -3509,7 +3514,7 @@ push constant 32
 call String.appendChar 2
 call Output.printString 1
 pop temp 0
-push constant 11
+push constant 8
 push constant 26
 call Output.moveCursor 2
 pop temp 0
@@ -3535,7 +3540,7 @@ push constant 101
 call String.appendChar 2
 call Output.printString 1
 pop temp 0
-push constant 12
+push constant 10
 push constant 25
 call Output.moveCursor 2
 pop temp 0
@@ -3567,7 +3572,7 @@ push constant 101
 call String.appendChar 2
 call Output.printString 1
 pop temp 0
-push constant 13
+push constant 12
 push constant 12
 call Output.moveCursor 2
 pop temp 0
