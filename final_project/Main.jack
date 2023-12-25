@@ -3,15 +3,22 @@ class Main {
         var Game game;
         var int result;
         var int num_enemy;
+        var int enemy_hp;
         let num_enemy = 1;
+        let enemy_hp = 1;
         let result = 1;
         let game = Game.new();
         do game.start_menu();
         while(~(result = -1)){
-            do game.init(1, 3, num_enemy, 1); // (level, jet_hp, num_enemy, enemy_hp)
+            do game.init(1, 3, num_enemy, enemy_hp); // (level, jet_hp, num_enemy, enemy_hp)
             let result = game.run();
             do game.over(result);
-            let num_enemy = num_enemy + 1;
+            if(~(num_enemy < 4)){ // enemies are more than or equal to 4
+                let enemy_hp = enemy_hp + 1;
+            }
+            else{
+                let num_enemy = num_enemy + 1;
+            }
         }
 
         return;
