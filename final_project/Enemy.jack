@@ -11,7 +11,6 @@ class Enemy {
     field int location;
 
     field int hp;
-    field int i;
 
     field int num_bullets;
     field Array bullets;
@@ -25,6 +24,7 @@ class Enemy {
 
     
     constructor Enemy new(int E_row, int E_col, int E_hp){
+        var int i;
         // init position
         let row = E_row;
         let col = E_col;

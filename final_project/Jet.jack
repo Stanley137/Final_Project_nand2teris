@@ -6,7 +6,6 @@ class Jet{
     field int col; // 0<=col<=511
     field int location;
     field int frame;
-    field int i;
     field int hit; // one bullet
     field int b_index;
     field int trans_row;
@@ -17,6 +16,7 @@ class Jet{
     field Bullet bullet;
 
     constructor Jet new(int A_row,int A_col, int A_hp){
+        var int i;
         let hit = -1;
         let row = A_row;
         let col = A_col;
@@ -51,7 +51,7 @@ class Jet{
         let b_row = bullet.get_row();
         let b_col = bullet.get_col();
         // the length of enemy's wing, 19
-        if((Math.abs(b_col -e_col) < 33) & (Math.abs(e_row - b_row) < 23)){ // the col must be large
+        if((Math.abs(b_col -e_col) < 33) & (Math.abs(e_row - b_row) < 22)){ // the col must be large
             //do Output.printString("Here");
             do bullet.clear(((b_row - 3)*32)+((b_col - 11)/16));
             let hit = -1;

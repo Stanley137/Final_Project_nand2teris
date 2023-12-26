@@ -3219,12 +3219,6 @@ pop pointer 1
 push that 0
 pop this 2
 push this 2
-call Enemy.get_row 1
-pop local 5
-push this 2
-call Enemy.get_col 1
-pop local 6
-push this 2
 call Enemy.get_hp 1
 push constant 0
 eq
@@ -3269,6 +3263,12 @@ push constant 1
 neg
 return
 label IF_FALSE2
+push this 2
+call Enemy.get_row 1
+pop local 5
+push this 2
+call Enemy.get_col 1
+pop local 6
 push this 0
 push local 5
 push local 6

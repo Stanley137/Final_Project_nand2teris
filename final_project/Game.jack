@@ -601,8 +601,6 @@ class Game {
             let e_index = 0;
             while(e_index < num_enemy){
                 let enemy = enemys[e_index];
-                let e_row = enemy.get_row();
-                let e_col = enemy.get_col();
                 if(~(enemy.get_hp() = 0)){ // dead
                     // enemy fire
                     do enemy.fire();
@@ -616,6 +614,8 @@ class Game {
                         return -1;
                     }
                     // enemy hit
+                    let e_row = enemy.get_row();
+                    let e_col = enemy.get_col();
                     let e_hit = jet.hit_enemy(e_row, e_col);
                     // do Output.printString("WWWW");
                     // do Output.printInt(e_hit);
